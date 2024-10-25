@@ -1,0 +1,59 @@
+<!-- Create a page that shows the emplyees appotiments by differents pediods of time (week, months, years etc.). For admin users, they should have the option to filter/search for all emplyees and no only itself--> 
+
+<!-- Relatórios por vários períodos -->
+
+<!-- Para admin, filtro por usuário -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Appointments</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- Include navbar component -->
+            <div id="navbar"></div>
+        </nav>
+    </header>
+    <main>
+        <h1>Relatórios por Vários Períodos</h1>
+        <section id="filters">
+            <label for="period">Período:</label>
+            <select id="period">
+                <option value="week">Semana</option>
+                <option value="month">Mês</option>
+                <option value="year">Ano</option>
+            </select>
+            <div id="admin-filters" style="display: none;">
+                <label for="employee">Funcionário:</label>
+                <input type="text" id="employee" placeholder="Nome do Funcionário">
+            </div>
+        </section>
+        <section id="appointments">
+            <ul id="appointment-list"></ul>
+        </section>
+    </main>
+    <footer>
+        <!-- Include footer component -->
+        <div id="footer"></div>
+    </footer>
+    <script src="/scripts/auth.js"></script>
+    <script src="/scripts/authO.js"></script>
+    <script src="/scripts/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const isAdmin = true; // Replace with actual admin check
+            const adminFilters = document.getElementById('admin-filters');
+            if (isAdmin) {
+                adminFilters.style.display = 'block';
+            }
+
+            // Add event listeners and other logic here
+        });
+    </script>
+</body>
+</html>

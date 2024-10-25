@@ -1,0 +1,136 @@
+<!-- Lista de funcionarios com opçoes de cadastro, atualização e deleção -->
+<!-- Detalhes do funcionario -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Employee Management</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <h1>Employee Management</h1>
+    <button onclick="openCreateForm()">Create New Employee</button>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="employeeTable">
+            <!-- Employee rows will be populated here -->
+        </tbody>
+    </table>
+
+    <!-- Create Employee Form -->
+    <div id="createForm" style="display:none;">
+        <h2>Create New Employee</h2>
+        <form id="createEmployeeForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position" required>
+            <button type="submit">Create</button>
+            <button type="button" onclick="closeCreateForm()">Cancel</button>
+        </form>
+    </div>
+
+    <!-- Update Employee Form -->
+    <div id="updateForm" style="display:none;">
+        <h2>Update Employee</h2>
+        <form id="updateEmployeeForm">
+            <input type="hidden" id="updateId" name="id">
+            <label for="updateName">Name:</label>
+            <input type="text" id="updateName" name="name" required>
+            <label for="updatePosition">Position:</label>
+            <input type="text" id="updatePosition" name="position" required>
+            <button type="submit">Update</button>
+            <button type="button" onclick="closeUpdateForm()">Cancel</button>
+        </form>
+    </div>
+
+    <!-- Employee Details Modal -->
+    <div id="detailsModal" style="display:none;">
+        <h2>Employee Details</h2>
+        <p id="employeeDetails"></p>
+        <button type="button" onclick="closeDetailsModal()">Close</button>
+    </div>
+
+    <script src="/scripts/auth.js"></script>
+    <script src="/scripts/authO.js"></script>
+    <script src="/scripts/scripts.js"></script>
+    <script>
+        document.getElementById('createEmployeeForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Logic to create a new employee
+    closeCreateForm();
+});
+
+document.getElementById('updateEmployeeForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Logic to update an existing employee
+    closeUpdateForm();
+});
+
+function openCreateForm() {
+    document.getElementById('createForm').style.display = 'block';
+}
+
+function closeCreateForm() {
+    document.getElementById('createForm').style.display = 'none';
+}
+
+function openUpdateForm(id, name, position) {
+    document.getElementById('updateId').value = id;
+    document.getElementById('updateName').value = name;
+    document.getElementById('updatePosition').value = position;
+    document.getElementById('updateForm').style.display = 'block';
+}
+
+function closeUpdateForm() {
+    document.getElementById('updateForm').style.display = 'none';
+}
+
+function openDetailsModal(details) {
+    document.getElementById('employeeDetails').innerText = details;
+    document.getElementById('detailsModal').style.display = 'block';
+}
+
+function closeDetailsModal() {
+    document.getElementById('detailsModal').style.display = 'none';
+}
+
+// Function to populate employee table (example data)
+function populateEmployeeTable() {
+    const employees = [
+        { id: 1, name: 'John Doe', position: 'Manager' },
+        { id: 2, name: 'Jane Smith', position: 'Developer' }
+    ];
+
+    const tableBody = document.getElementById('employeeTable');
+    tableBody.innerHTML = '';
+
+    employees.forEach(employee => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${employee.id}</td>
+            <td>${employee.name}</td>
+            <td>${employee.position}</td>
+            <td>
+                <button onclick="openUpdateForm(${employee.id}, '${employee.name}', '${employee.position}')">Update</button>
+                <button onclick="openDetailsModal('ID: ${employee.id}\\nName: ${employee.name}\\nPosition: ${employee.position}')">Details</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Populate the table on page load
+window.onload = populateEmployeeTable;
+    </script>
+</body>
+</html>

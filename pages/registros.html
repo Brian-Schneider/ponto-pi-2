@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Ponto</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Logo da Empresa</div>
+        <div class="user-info">
+            <span>Nome do Usuário</span>
+            <span id="current-time"></span>
+        </div>
+    </header>
+    <main>
+        <section class="register-buttons">
+            <button id="entrada">Entrada</button>
+            <button id="intervalo">Intervalo</button>
+            <button id="retorno">Retorno</button>
+            <button id="saida">Saída</button>
+        </section>
+        <section class="history">
+            <h2>Histórico de Registros</h2>
+            <ul id="history-list">
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <nav>
+            <a href="#">Dashboard</a>
+            <a href="#">Relatórios</a>
+            <a href="#">Suporte</a>
+        </nav>
+        <div class="contact-info">
+            <span>Contato para Suporte</span>
+        </div>
+    </footer>
+    <script src="/scripts/auth.js"></script>
+    <script src="/scripts/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+document.addEventListener('DOMContentLoaded', () => {
+
+
+    const currentTimeElement = document.getElementById('current-time');
+    const historyList = document.getElementById('history-list');
+    const apiUrl = 'https://your-backend-api.com/appointments';
+
+    let currentEntry = {
+        name: 'John Doe', // Replace with actual name
+        register: '12345', // Replace with actual register number
+        date: new Date().toLocaleDateString(),
+        time1: '',
+        time2: '',
+        time3: '',
+        time4: ''
+    };
+
+    function updateTime() {
+        const now = new Date();
+        currentTimeElement.textContent = now.toLocaleString();
+    }
+
+    async function addHistoryEntry(type) {
+        const now = new Date();
+        currentEntry[timeField] = now.toLocaleTimeString();
+
+        // Send the entry to the backend
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: currentEntry.name,
+                    register: currentEntry.register,
+                    date: currentEntry.date,
+                    [timeField]: currentEntry[timeField]
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // Add the entry to the history list in the DOM
+            const listItem = document.createElement('li');
+            listItem.textContent = `${timeField} - ${currentEntry[timeField]}`;
+            historyList.appendChild(listItem);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    async function loadHistory() {
+        // Retrieve the history from the backend
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            historyList.innerHTML = ''; // Clear the current list
+
+            // Populate the history list with the retrieved data
+            data.forEach(entry => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${entry.type} - ${new Date(entry.timestamp).toLocaleString()}`;
+                historyList.appendChild(listItem);
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    document.getElementById('entrada').addEventListener('click', () => addHistoryEntry('time1'));
+    document.getElementById('intervalo').addEventListener('click', () => addHistoryEntry('time2'));
+    document.getElementById('retorno').addEventListener('click', () => addHistoryEntry('time3'));
+    document.getElementById('saida').addEventListener('click', () => addHistoryEntry('time4'));
+
+    setInterval(updateTime, 1000);
+    updateTime();
+    loadHistory();
+    requireAuth();
+});

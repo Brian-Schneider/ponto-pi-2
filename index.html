@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Ponto</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Registro de Ponto</h1>
+    <div id="registroPonto">
+        <form id="pontoForm">
+            <input type="text" id="job" placeholder="Descrição" required>
+            <input type="datetime-local" id="datetime" required>
+            <button type="submit">Marcar ponto</button>
+        </form>
+        <div id="pontosList"></div>
+    </div>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/scripts.js"></script>
+</body>
+</html>
