@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    requireAuth();
 
     const currentTimeElement = document.getElementById('current-time');
     const historyList = document.getElementById('history-list');
-    const apiUrl = 'https://your-backend-api.com/appointments';
+    const apiUrl = 'http://127.0.0.1:5000/save_time';
 
     let currentEntry = {
         name: 'John Doe', // Replace with actual name
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTimeElement.textContent = now.toLocaleString();
     }
 
-    async function addHistoryEntry(type) {
+    async function addHistoryEntry(timeField) {
         const now = new Date();
         currentEntry[timeField] = now.toLocaleTimeString();
 
@@ -82,5 +83,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateTime, 1000);
     updateTime();
     loadHistory();
-    requireAuth();
 });
