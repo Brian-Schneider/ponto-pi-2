@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function addHistoryEntry(timeField) {
         const now = new Date();
-        currentEntry[timeField] = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+        const timeValue = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
         // Send the entry to the backend
         try {
             const response = await fetch(apiUrl, {
@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     name: currentEntry.name,
                     register: currentEntry.register,
                     date: currentEntry.date,
-                    [timeField]: currentEntry[timeField]
+                    time_field: timeField,
+                    time_value: timeValue
                 })
             });
 
