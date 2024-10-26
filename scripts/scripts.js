@@ -6,14 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const historyList = document.getElementById('history-list');
     const apiUrl = 'http://127.0.0.1:5000/save_time';
 
+    const userName = getLoggedUserName(); // Replace with actual function to get the logged user's name
+    const userRegister = getLoggedUserRegister();
+
     let currentEntry = {
-        name: 'John Doe', // Replace with actual name
-        register: '12345', // Replace with actual register number
+        user: localStorage.getItem('id'),
         date: new Date().toLocaleDateString(),
-        time1: '',
-        time2: '',
-        time3: '',
-        time4: ''
+        entrada: '',
+        intervalo: '',
+        retorno: '',
+        saida: ''
     };
 
     function updateTime() {
