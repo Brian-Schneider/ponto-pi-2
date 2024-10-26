@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const username = document.getElementById('email').value;
+        const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
     
         fetch('http://127.0.0.1:5000/login/', {
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Access-Control-Allow-Methods':'POST',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ email, password })
         })
         .then(response => {
             if (!response.ok) {
