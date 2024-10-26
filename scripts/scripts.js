@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const historyList = document.getElementById('history-list');
     const apiUrl = 'http://127.0.0.1:5000/save_time';
 
-    const userName = getLoggedUserName(); // Replace with actual function to get the logged user's name
-    const userRegister = getLoggedUserRegister();
 
     let currentEntry = {
         user: localStorage.getItem('id'),
