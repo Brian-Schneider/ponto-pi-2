@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    document.getElementById('entrada').addEventListener('click', () => addHistoryEntry('time1'));
-    document.getElementById('intervalo').addEventListener('click', () => addHistoryEntry('time2'));
-    document.getElementById('retorno').addEventListener('click', () => addHistoryEntry('time3'));
-    document.getElementById('saida').addEventListener('click', () => addHistoryEntry('time4'));
+    document.getElementById('entrada').addEventListener('click', () => addHistoryEntry('entrada'));
+    document.getElementById('intervalo').addEventListener('click', () => addHistoryEntry('intervalo'));
+    document.getElementById('retorno').addEventListener('click', () => addHistoryEntry('retorno'));
+    document.getElementById('saida').addEventListener('click', () => addHistoryEntry('saida'));
 
     setInterval(updateTime, 1000);
     updateTime();
