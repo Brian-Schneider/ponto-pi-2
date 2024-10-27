@@ -32,8 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    name: currentEntry.name,
-                    register: currentEntry.register,
+                    user: currentEntry.user,
                     date: currentEntry.date,
                     time_field: timeField,
                     time_value: timeValue
