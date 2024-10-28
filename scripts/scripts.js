@@ -4,7 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const currentTimeElement = document.getElementById('current-time');
     const historyList = document.getElementById('history-list');
-    const apiUrl = 'http://127.0.0.1:5000/save_time';
+    const apiUrl = 'http://127.0.0.1:5000';
+
+    const saveTimeEndpoint = `${baseUrl}/save_time`;
+    const loadHistoryEndpoint = `${baseUrl}/load_history`;
 
 
     let currentEntry = {
@@ -25,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const now = new Date();
         const timeValue = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });        // Send the entry to the backend
         try {
-            const response = await fetch(apiUrl, {
+            const response = await fetch(saveTimeEndpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -73,6 +76,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    async function loadHistoryUser(userId) {
+        // Retrieve the history from the backend
+        try {
+            const response = await fetch(`${loadHistoryEndpoint}/${userId}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+    
+            const data = await response.json();
+            historyList.innerHTML = ''; // Clear the current list
+    
+            // Get the current date and the date 5 days prior
+            const currentDate = new Date();
+            const pastDate = new Date();
+            pastDate.setDate(currentDate.getDate() - 5);
+    
+            // Filter the data to include only entries within the desired date range
+            const filteredData = data.filter(entry => {
+                const entryDate = new Date(entry.date);
+                return entryDate >= pastDate && entryDate <= currentDate;
+            });
+    
+            // Populate the history list with the filtered data
+            filteredData.forEach(entry => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${entry.user} - ${entry.date} - Entrada: ${entry.entrada} - Intervalo: ${entry.intervalo} - Retorno: ${entry.retorno} - Saída: ${entry.saida}`;
+                historyList.appendChild(listItem);
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
     document.getElementById('entrada').addEventListener('click', () => addHistoryEntry('entrada'));
     document.getElementById('intervalo').addEventListener('click', () => addHistoryEntry('intervalo'));
     document.getElementById('retorno').addEventListener('click', () => addHistoryEntry('retorno'));
@@ -80,5 +116,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(updateTime, 1000);
     updateTime();
-    loadHistory();
+
+    if (userId) {
+        loadHistoryUser(localStorage.getItem('id'));
+    } else {
+        console.error('User ID not found');
+    }
 });
