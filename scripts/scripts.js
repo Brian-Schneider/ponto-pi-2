@@ -1,44 +1,48 @@
-function navigateTo(route) {
-    history.pushState(null, null, route);
-    handleRoute();
-}
-
-// Function to handle route changes
-function handleRoute() {
-    const path = window.location.pathname;
-    print(path);
-    const contentElement = document.getElementById('content');
-
-    switch (path) {
-        case '/login':
-            contentElement.innerHTML = '../pages/login.html';
-            break;
-        case '/home':
-            contentElement.innerHTML = '../index.html';
-            break;
-        case '/registro':
-            contentElement.innerHTML = '../pages/registros.html';
-            break;
-        default:
-            contentElement.innerHTML = '<h1>404 Not Found</h1>';
-            break;
-    }
-}
-
-// Set up event listeners for navigation links
-document.querySelectorAll('a[data-route]').forEach(link => {
-    link.addEventListener('click', (event) => {
-        event.preventDefault();
-        const route = event.target.getAttribute('href');
-        navigateTo(route);
-    });
-});
-
-window.addEventListener('popstate', handleRoute);
-document.addEventListener('DOMContentLoaded', handleRoute);
-
 document.addEventListener('DOMContentLoaded', () => {
 
+    const navigateTo = url => {
+        history.pushState(null, null, url);
+        router();
+    };
+
+    const router = async () => {
+        const routes = [
+            { path: "/", view: () => "Welcome to the Home Page" },
+            { path: "/pages/about.html", view: () => "Learn more About Us" },
+            { path: "/pages/contact.html", view: () => "Contact Us Here" },
+            { path: "/pages/login.html", view: () => "Login to Your Account" }
+        ];
+
+        const potentialMatches = routes.map(route => {
+            return {
+                route: route,
+                isMatch: location.pathname === route.path
+            };
+        });
+
+        let match = potentialMatches.find(potentialMatch => potentialMatch.isMatch);
+
+        if (!match) {
+            match = {
+                route: routes[0],
+                isMatch: true
+            };
+        }
+
+        document.querySelector("#app").innerHTML = await match.route.view();
+    };
+
+    window.addEventListener("popstate", router);
+
+    document.body.addEventListener("click", e => {
+        if (e.target.matches("[data-link]")) {
+            e.preventDefault();
+            navigateTo(e.target.href);
+        }
+    });
+
+    router();
+    
     requireAuth();
 
     const currentTimeElement = document.getElementById('current-time');
