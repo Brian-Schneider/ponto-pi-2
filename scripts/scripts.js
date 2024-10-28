@@ -45,52 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     requireAuth();
 
-
     const currentTimeElement = document.getElementById('current-time');
     const historyList = document.getElementById('history-list');
     const baseUrl = 'http://127.0.0.1:5000';
 
     const saveTimeEndpoint = `${baseUrl}/save_time`;
     const loadHistoryEndpoint = `${baseUrl}/object`;
-    const loadRelatorioEndpoint = `${baseUrl}/relatorio`;
 
-    async function loadRelatorioView() {
-        const response = await fetch('/relatorio');
-        const html = await response.text();
-    
-        // Fetch and display data based on filters
-        document.getElementById('filter-button').addEventListener('click', () => {
-            const period = document.getElementById('period').value;
-            const employee = document.getElementById('employee').value;
-            fetchFilteredData(period, employee);
-        });
-    
-        async function fetchFilteredData(period, employee) {
-            const response = await fetch(`/relatorio?period=${period}&employee=${employee}`);
-            
-            if (!response.ok) {
-                const error = await response.json();
-                alert(error.error);
-                return;
-            }
-    
-            const data = await response.json();
-    
-            const tbody = document.getElementById('history-table').querySelector('tbody');
-            tbody.innerHTML = '';
-            data.forEach(record => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${record.date}</td>
-                    <td>${record.entrada}</td>
-                    <td>${record.intervalo}</td>
-                    <td>${record.retorno}</td>
-                    <td>${record.saida}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-    }
 
     let currentEntry = {
         user: localStorage.getItem('id'),
@@ -217,8 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateTime, 1000);
     updateTime();
 
-    loadRelatorioView()
-
     const userId = localStorage.getItem('id');
 
     if (userId) {
@@ -227,4 +186,3 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('User ID not found');
     }
 });
-
