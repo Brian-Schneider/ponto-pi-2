@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Get the current date and the date 5 days prior
             const currentDate = new Date();
             const pastDate = new Date();
-            pastDate.setDate(currentDate.getDate() - 5);
+            pastDate.setDate(currentDate.getDate() - 6);
     
             // Filter the data to include only entries within the desired date range
             const filteredData = data.filter(entry => {
