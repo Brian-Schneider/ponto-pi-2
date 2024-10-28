@@ -102,27 +102,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function loadHistory() {
-        // Retrieve the history from the backend
+    async function fetchReport(employee, period) {
         try {
-            const response = await fetch(baseUrl);
+            const response = await fetch(`${baseUrl}/relatorio?employee=${employee}&period=${period}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
 
             const data = await response.json();
-            historyList.innerHTML = ''; // Clear the current list
+            reportTableBody.innerHTML = ''; // Clear the current table body
 
-            // Populate the history list with the retrieved data
             data.forEach(entry => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${entry.type} - ${new Date(entry.timestamp).toLocaleString()}`;
-                historyList.appendChild(listItem);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${entry.id}</td>
+                    <td>${entry.date}</td>
+                    <td>${entry.entrada || ''}</td>
+                    <td>${entry.intervalo || ''}</td>
+                    <td>${entry.retorno || ''}</td>
+                    <td>${entry.saida || ''}</td>
+                `;
+                reportTableBody.appendChild(row);
             });
         } catch (error) {
             console.error('Error:', error);
         }
     }
+
+    reportForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const employee = document.getElementById('employee').value;
+        const period = document.getElementById('period').value;
+        fetchReport(employee, period);
+    });
 
     async function loadHistoryUser(userId) {
         try {
