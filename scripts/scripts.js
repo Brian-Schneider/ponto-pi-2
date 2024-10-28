@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function loadHistoryUser(userId) {
+    ync function loadHistoryUser(userId) {
         try {
             const response = await fetch(`${loadHistoryEndpoint}/${userId}`);
             if (!response.ok) {
@@ -103,7 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return entryDate >= pastDate && entryDate <= currentDate;
             });
     
-            // Populate the table with the filtered data
+            // Sort the filtered data in descending order by date
+            filteredData.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+            // Populate the table with the sorted data
             filteredData.forEach(entry => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
