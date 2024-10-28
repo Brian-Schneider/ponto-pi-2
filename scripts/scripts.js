@@ -27,9 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function addHistoryEntry(timeField) {
         const now = new Date();
         const timeValue = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
-
-        const historyTableBody = document.querySelector('#history-table tbody');
-        historyTableBody.innerHTML = ''; // Clear the current table body
+    
         // Send the entry to the backend
         try {
             const response = await fetch(saveTimeEndpoint, {
@@ -44,21 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     time_value: timeValue
                 })
             });
-
+    
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-
-            // Add the entry to the history table in the DOM
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${currentEntry.date}</td>
-                <td>${timeField === 'entrada' ? timeValue : ''}</td>
-                <td>${timeField === 'intervalo' ? timeValue : ''}</td>
-                <td>${timeField === 'retorno' ? timeValue : ''}</td>
-                <td>${timeField === 'saida' ? timeValue : ''}</td>
-            `;
-            historyTableBody.appendChild(row);
+    
+            // Refresh the table to show the latest data
+            const userId = localStorage.getItem('id'); // Adjust this line based on where you store the userId
+            if (userId) {
+                await loadHistoryUser(userId);
+            } else {
+                console.error('User ID not found');
+            }
         } catch (error) {
             console.error('Error:', error);
         }
