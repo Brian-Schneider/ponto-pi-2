@@ -34,6 +34,9 @@ document.querySelectorAll('a[data-route]').forEach(link => {
     });
 });
 
+window.addEventListener('popstate', handleRoute);
+document.addEventListener('DOMContentLoaded', handleRoute);
+
 document.addEventListener('DOMContentLoaded', () => {
 
     requireAuth();
