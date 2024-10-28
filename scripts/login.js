@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('id', data.id);
                 localStorage.setItem('accessToken', data.accessToken);
                 localStorage.setItem('role', data.role);
-                window.location.href = '/index.html';
+                window.location.href = '/';
             } else {
                 console.log(data);
                 alert('Email e/ou senha inválidos');
