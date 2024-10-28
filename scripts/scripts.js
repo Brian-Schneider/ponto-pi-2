@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadRelatorioView() {
         const response = await fetch('/relatorio');
         const html = await response.text();
-        document.querySelector("#app").innerHTML = html;
     
         // Fetch and display data based on filters
         document.getElementById('filter-button').addEventListener('click', () => {
