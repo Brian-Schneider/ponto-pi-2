@@ -6,6 +6,7 @@ function navigateTo(route) {
 // Function to handle route changes
 function handleRoute() {
     const path = window.location.pathname;
+    print(path);
     const contentElement = document.getElementById('content');
 
     switch (path) {
