@@ -13,6 +13,10 @@
         "rewrite": "/pages/registros.html"
       },
       {
+        "route": "/relatorio",
+        "rewrite": "/pages/relatorio.html"
+      },
+      {
         "route": "/about",
         "rewrite": "/index.html"
       },
