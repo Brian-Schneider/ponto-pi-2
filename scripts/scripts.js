@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function loadHistoryUser(userId) {
-        // Retrieve the history from the backend
         try {
             const response = await fetch(`${loadHistoryEndpoint}/${userId}`);
             if (!response.ok) {
@@ -85,7 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
     
             const data = await response.json();
-            historyList.innerHTML = ''; // Clear the current list
+            const historyTableBody = document.querySelector('#history-table tbody');
+            historyTableBody.innerHTML = ''; // Clear the current table body
     
             // Get the current date and the date 5 days prior
             const currentDate = new Date();
@@ -98,11 +98,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 return entryDate >= pastDate && entryDate <= currentDate;
             });
     
-            // Populate the history list with the filtered data
+            // Populate the table with the filtered data
             filteredData.forEach(entry => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${entry.user} - ${entry.date} - Entrada: ${entry.entrada} - Intervalo: ${entry.intervalo} - Retorno: ${entry.retorno} - Saída: ${entry.saida}`;
-                historyList.appendChild(listItem);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${entry.date}</td>
+                    <td>${entry.entrada || ''}</td>
+                    <td>${entry.intervalo || ''}</td>
+                    <td>${entry.retorno || ''}</td>
+                    <td>${entry.saida || ''}</td>
+                `;
+                historyTableBody.appendChild(row);
             });
         } catch (error) {
             console.error('Error:', error);
