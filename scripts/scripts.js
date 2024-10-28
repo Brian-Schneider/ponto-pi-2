@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    ync function loadHistoryUser(userId) {
+    async function loadHistoryUser(userId) {
         try {
             const response = await fetch(`${loadHistoryEndpoint}/${userId}`);
             if (!response.ok) {
