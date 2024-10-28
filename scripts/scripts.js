@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const now = new Date();
         const timeValue = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
 
+        const historyTableBody = document.querySelector('#history-table tbody');
+        historyTableBody.innerHTML = ''; // Clear the current table body
         // Send the entry to the backend
         try {
             const response = await fetch(saveTimeEndpoint, {
