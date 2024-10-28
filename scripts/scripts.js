@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseUrl = 'http://127.0.0.1:5000';
 
     const saveTimeEndpoint = `${baseUrl}/save_time`;
-    const loadHistoryEndpoint = `${baseUrl}/load_history`;
+    const loadHistoryEndpoint = `${baseUrl}/object`;
 
 
     let currentEntry = {
