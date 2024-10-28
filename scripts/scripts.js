@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const currentTimeElement = document.getElementById('current-time');
     const historyList = document.getElementById('history-list');
-    const apiUrl = 'http://127.0.0.1:5000';
+    const baseUrl = 'http://127.0.0.1:5000';
 
     const saveTimeEndpoint = `${baseUrl}/save_time`;
     const loadHistoryEndpoint = `${baseUrl}/load_history`;
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadHistory() {
         // Retrieve the history from the backend
         try {
-            const response = await fetch(apiUrl);
+            const response = await fetch(baseUrl);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
