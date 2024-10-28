@@ -47,6 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const currentTimeElement = document.getElementById('current-time');
     const historyList = document.getElementById('history-list');
+
+    const reportForm = document.getElementById('report-form');
+    const reportTableBody = document.querySelector('#report-table tbody');
+    
     const baseUrl = 'http://127.0.0.1:5000';
 
     const saveTimeEndpoint = `${baseUrl}/save_time`;
@@ -129,12 +133,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    reportForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const employee = document.getElementById('employee').value;
-        const period = document.getElementById('period').value;
-        fetchReport(employee, period);
-    });
+    if (reportForm) {
+        reportForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const employee = document.getElementById('employee').value;
+            const period = document.getElementById('period').value;
+            fetchReport(employee, period);
+        });
+    }
+
+    async function loadHistory() {
+        // Retrieve the history from the backend
+        try {
+            const response = await fetch(baseUrl);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            historyList.innerHTML = ''; // Clear the current list
+
+            // Populate the history list with the retrieved data
+            data.forEach(entry => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${entry.type} - ${new Date(entry.timestamp).toLocaleString()}`;
+                historyList.appendChild(listItem);
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
 
     async function loadHistoryUser(userId) {
         try {
