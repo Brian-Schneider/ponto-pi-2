@@ -117,8 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateTime, 1000);
     updateTime();
 
+    const userId = localStorage.getItem('id');
+
     if (userId) {
-        loadHistoryUser(localStorage.getItem('id'));
+        loadHistoryUser(userId);
     } else {
         console.error('User ID not found');
     }
