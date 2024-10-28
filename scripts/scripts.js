@@ -106,11 +106,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Sort the filtered data in descending order by date
             filteredData.sort((a, b) => new Date(b.date) - new Date(a.date));
     
+            function formatDate(date) {
+                return new Intl.DateTimeFormat('pt-BR').format(new Date(date));
+            }
+
             // Populate the table with the sorted data
             filteredData.forEach(entry => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${entry.date}</td>
+                    <td>${formatDate(entry.date)}</td>
                     <td>${entry.entrada || ''}</td>
                     <td>${entry.intervalo || ''}</td>
                     <td>${entry.retorno || ''}</td>
