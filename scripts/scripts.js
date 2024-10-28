@@ -1,3 +1,38 @@
+function navigateTo(route) {
+    history.pushState(null, null, route);
+    handleRoute();
+}
+
+// Function to handle route changes
+function handleRoute() {
+    const path = window.location.pathname;
+    const contentElement = document.getElementById('content');
+
+    switch (path) {
+        case '/login':
+            contentElement.innerHTML = '../pages/login.html';
+            break;
+        case '/home':
+            contentElement.innerHTML = '../index.html';
+            break;
+        case '/registro':
+            contentElement.innerHTML = '../pages/registros.html';
+            break;
+        default:
+            contentElement.innerHTML = '<h1>404 Not Found</h1>';
+            break;
+    }
+}
+
+// Set up event listeners for navigation links
+document.querySelectorAll('a[data-route]').forEach(link => {
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const route = event.target.getAttribute('href');
+        navigateTo(route);
+    });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
 
     requireAuth();
