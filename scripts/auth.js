@@ -4,6 +4,6 @@ function isAuthenticated() {
 
 function requireAuth() {
     if (!isAuthenticated()) {
-        window.location.href = 'pages/login.html';
+        window.location.href = '/login';
     }
 }

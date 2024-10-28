@@ -9,6 +9,10 @@
         "rewrite": "/pages/login.html"
       },
       {
+        "route": "/registro",
+        "rewrite": "/pages/registros.html"
+      },
+      {
         "route": "/about",
         "rewrite": "/index.html"
       },

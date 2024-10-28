@@ -12,6 +12,6 @@ function getUserRole() {
 function requireRole() {
     const role =  getUserRole();
     if (role !== 'admin') {
-        window.location.href = 'index.html';
+        window.location.href = '/';
     }
 }
