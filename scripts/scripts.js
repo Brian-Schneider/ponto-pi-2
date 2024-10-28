@@ -26,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function addHistoryEntry(timeField) {
         const now = new Date();
-        const timeValue = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });        // Send the entry to the backend
+        const timeValue = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
+
+        // Send the entry to the backend
         try {
             const response = await fetch(saveTimeEndpoint, {
                 method: 'POST',
@@ -45,10 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error('Network response was not ok');
             }
 
-            // Add the entry to the history list in the DOM
-            const listItem = document.createElement('li');
-            listItem.textContent = `${timeField} - ${currentEntry[timeField]}`;
-            historyList.appendChild(listItem);
+            // Add the entry to the history table in the DOM
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${currentEntry.date}</td>
+                <td>${timeField === 'entrada' ? timeValue : ''}</td>
+                <td>${timeField === 'intervalo' ? timeValue : ''}</td>
+                <td>${timeField === 'retorno' ? timeValue : ''}</td>
+                <td>${timeField === 'saida' ? timeValue : ''}</td>
+            `;
+            historyTableBody.appendChild(row);
         } catch (error) {
             console.error('Error:', error);
         }
@@ -131,3 +139,4 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('User ID not found');
     }
 });
+
