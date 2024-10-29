@@ -99,6 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTime();
 
     const today = new Date().toISOString().split('T')[0];
-    fetchReport('*', today + ',' + today);
+    fetchReport('', today + ',' + today);
 
 });
