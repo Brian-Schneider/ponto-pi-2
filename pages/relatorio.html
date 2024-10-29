@@ -17,12 +17,15 @@
     <main>
         <h1>Relatórios por Vários Períodos</h1>
         <section id="filters">
-            <label for="period">Período:</label>
-            <select id="period">
-                <option value="week">Semana</option>
-                <option value="month">Mês</option>
-                <option value="year">Ano</option>
-            </select>
+            <div id="period-filters">
+                <label for="period">Período:</label>
+                <div>
+                    <label for="period-start">De:</label>
+                    <input type="date" id="period-start" placeholder="De:">
+                    <label for="period-end">Até:</label>
+                    <input type="date" id="period-end" placeholder="Até:">
+                </div>
+            </div>
             <div id="admin-filters">
                 <label for="employee">Funcionário:</label>
                 <input type="text" id="employee" placeholder="Nome do Funcionário">
@@ -35,6 +38,7 @@
                 <thead>
                     <tr>
                         <th>Data</th>
+                        <th>Funcionário</th>
                         <th>Entrada</th>
                         <th>Intervalo</th>
                         <th>Retorno</th>

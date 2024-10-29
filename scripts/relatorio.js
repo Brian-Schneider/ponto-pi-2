@@ -47,7 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const currentTimeElement = document.getElementById('current-time');
     const filterButton = document.getElementById('filter-button');
-    const periodSelect = document.getElementById('period');
+    const periodStartSelect = document.getElementById('period-start');
+    const periodEndSelect = document.getElementById('period-end');
     const employeeInput = document.getElementById('employee');
     const reportTableBody = document.querySelector('#history-table tbody');
     const baseUrl = 'http://127.0.0.1:5000';
@@ -65,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
             data.forEach(entry => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${entry.id}</td>
                     <td>${entry.date}</td>
+                    <td>${entry.user}</td>
                     <td>${entry.entrada || ''}</td>
                     <td>${entry.intervalo || ''}</td>
                     <td>${entry.retorno || ''}</td>
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     filterButton.addEventListener('click', () => {
-        const period = periodSelect.value;
+        const period = periodStartSelect.value + ',' + periodEndSelect.value;
         const employee = employeeInput.value;
         fetchReport(employee, period);
     });
