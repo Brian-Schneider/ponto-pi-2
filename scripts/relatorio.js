@@ -46,8 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     requireAuth();
 
     const currentTimeElement = document.getElementById('current-time');
-    const reportForm = document.getElementById('report-form');
-    const reportTableBody = document.querySelector('#report-table tbody');
+    const filterButton = document.getElementById('filter-button');
+    const periodSelect = document.getElementById('period');
+    const employeeInput = document.getElementById('employee');
+    const reportTableBody = document.querySelector('#history-table tbody');
     const baseUrl = 'http://127.0.0.1:5000';
 
     async function fetchReport(employee, period) {
@@ -77,14 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (reportForm) {
-        reportForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const employee = document.getElementById('employee').value;
-            const period = document.getElementById('period').value;
-            fetchReport(employee, period);
-        });
-    }
+    filterButton.addEventListener('click', () => {
+        const period = periodSelect.value;
+        const employee = employeeInput.value;
+        fetchReport(employee, period);
+    });
 
 
     function updateTime() {
