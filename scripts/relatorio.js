@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const period = periodStart + ',' + periodEnd;
         fetchReport(employee, period);
     });
-    });
 
 
     function updateTime() {
