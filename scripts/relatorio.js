@@ -98,4 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateTime, 1000);
     updateTime();
 
+    const today = new Date().toISOString().split('T')[0];
+    fetchReport('*', today + ',' + today);
+
 });
