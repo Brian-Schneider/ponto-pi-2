@@ -81,9 +81,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     filterButton.addEventListener('click', () => {
-        const period = periodStartSelect.value + ',' + periodEndSelect.value;
+        const periodStart = periodStartSelect.value;
+        const periodEnd = periodEndSelect.value;
         const employee = employeeInput.value;
+        if (!periodStart || !periodEnd) {
+            alert('Por favor, selecionar as datas.');
+            return;
+        }
+
+        const period = periodStart + ',' + periodEnd;
         fetchReport(employee, period);
+    });
     });
 
 
