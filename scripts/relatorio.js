@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             reportTableBody.innerHTML = '<tr><td colspan="6">Loading...</td></tr>'; // Show loading indicator
 
-            const response = await fetch(`${baseUrl}/relatorio?employee=${employee}&period=${period}`);
+            const response = await fetch(`${baseUrl}/registro?employee=${employee}&period=${period}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
