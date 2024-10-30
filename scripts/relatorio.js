@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const currentTimeElement = document.getElementById('current-time');
     const filterButton = document.getElementById('filter-button');
-    const periodStartSelect = document.getElementById('period-start');
-    const periodEndSelect = document.getElementById('period-end');
-    const employeeInput = document.getElementById('employee');
+    const periodoStartSelect = document.getElementById('periodo-start');
+    const periodoEndSelect = document.getElementById('periodo-end');
+    const funcionarioInput = document.getElementById('funcionario');
     const reportTableBody = document.querySelector('#history-table tbody');
     const baseUrl = 'http://127.0.0.1:5000';
 
@@ -64,11 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
-    async function fetchReport(employee, period) {
+    async function fetchReport(funcionario, periodo) {
         try {
             reportTableBody.innerHTML = '<tr><td colspan="6">Loading...</td></tr>'; // Show loading indicator
 
-            const response = await fetch(`${baseUrl}/registro?employee=${employee}&period=${period}`);
+            const response = await fetch(`${baseUrl}/registro?funcionario=${funcionario}&periodo=${periodo}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -96,17 +96,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     filterButton.addEventListener('click', debounce(() => {
-        const periodStart = periodStartSelect.value;
-        const periodEnd = periodEndSelect.value;
-        const employee = employeeInput.value.trim();
+        const periodoStart = periodoStartSelect.value;
+        const periodoEnd = periodoEndSelect.value;
+        const funcionario = funcionarioInput.value.trim();
 
-        if (!periodStart || !periodEnd) {
+        if (!periodoStart || !periodoEnd) {
             alert('Por favor, selecionar as datas.');
             return;
         }
 
-        const period = periodStart + ',' + periodEnd;
-        fetchReport(employee, period);
+        const periodo = periodoStart + ',' + periodoEnd;
+        fetchReport(funcionario, periodo);
     }, 300));
 
 

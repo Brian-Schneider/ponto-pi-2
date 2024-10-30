@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     let currentEntry = {
-        user: localStorage.getItem('id'),
-        date: new Date().toLocaleDateString(),
+        funcionario: localStorage.getItem('id'),
+        dia: new Date().toLocaleDateString(),
         entrada: '',
         intervalo: '',
         retorno: '',
@@ -67,9 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTimeElement.textContent = now.toLocaleString();
     }
 
-    async function addHistoryEntry(timeField) {
+    async function addHistoryEntry(campoTempo) {
         const now = new Date();
-        const timeValue = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
+        const valorTempo = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
     
         // Send the entry to the backend
         try {
@@ -79,10 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    user: currentEntry.user,
-                    date: currentEntry.date,
-                    time_field: timeField,
-                    time_value: timeValue
+                    funcionario: currentEntry.funcionario,
+                    dia: currentEntry.dia,
+                    campo_tempo: campoTempo,
+                    valor_tempo: valorTempo
                 })
             });
     
@@ -142,22 +142,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
             // Filter the data to include only entries within the desired date range
             const filteredData = data.filter(entry => {
-                const entryDate = new Date(entry.date);
+                const entryDate = new Date(entry.dia);
                 return entryDate >= pastDate && entryDate <= currentDate;
             });
     
             // Sort the filtered data in descending order by date
-            filteredData.sort((a, b) => new Date(b.date) - new Date(a.date));
+            filteredData.sort((a, b) => new Date(b.dia) - new Date(a.dia));
     
-            function formatDate(date) {
-                return new Intl.DateTimeFormat('pt-BR').format(new Date(date));
+            function formatDate(dia) {
+                return new Intl.DateTimeFormat('pt-BR').format(new Date(dia));
             }
 
             // Populate the table with the sorted data
             filteredData.forEach(entry => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${formatDate(entry.date)}</td>
+                    <td>${formatDate(entry.dia)}</td>
                     <td>${entry.entrada || ''}</td>
                     <td>${entry.intervalo || ''}</td>
                     <td>${entry.retorno || ''}</td>
