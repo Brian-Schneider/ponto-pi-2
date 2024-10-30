@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             reportTableBody.innerHTML = ''; // Clear the current table body
 
             data.forEach(entry => {
-                print(entry);
+                console.log(entry);
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${entry.dia}</td>
