@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const historyList = document.getElementById('history-list');
     const baseUrl = 'http://127.0.0.1:5000';
 
-    const saveTimeEndpoint = `${baseUrl}/registro`;
+    const saveTimeEndpoint = `${baseUrl}/registro/salvar`;
     const loadHistoryEndpoint = `${baseUrl}/registro`;
 
 
