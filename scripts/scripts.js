@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseUrl = 'http://127.0.0.1:5000';
 
     const saveTimeEndpoint = `${baseUrl}/save_time`;
-    const loadHistoryEndpoint = `${baseUrl}/object`;
+    const loadHistoryEndpoint = `${baseUrl}/registro`;
 
 
     let currentEntry = {
