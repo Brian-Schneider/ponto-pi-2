@@ -1,9 +1,38 @@
-import { requireAuth } from './auth.js';
-import { debounce, updateTime } from './utils.js';
-import { fetchReport } from './api.js';
-
 document.addEventListener('DOMContentLoaded', () => {
 
+    const navigateTo = url => {
+        history.pushState(null, null, url);
+        router();
+    };
+
+    const router = async () => {
+        const routes = [
+            { path: "/", view: () => "Welcome to the Home Page" },
+            { path: "/pages/about.html", view: () => "Learn more About Us" },
+            { path: "/pages/contact.html", view: () => "Contact Us Here" },
+            { path: "/pages/login.html", view: () => "Login to Your Account" }
+        ];
+
+        const potentialMatches = routes.map(route => {
+            return {
+                route: route,
+                isMatch: location.pathname === route.path
+            };
+        });
+
+        let match = potentialMatches.find(potentialMatch => potentialMatch.isMatch);
+
+        if (!match) {
+            match = {
+                route: routes[0],
+                isMatch: true
+            };
+        }
+
+        document.querySelector("#app").innerHTML = await match.route.view();
+    };
+
+    window.addEventListener("popstate", router);
 
     document.body.addEventListener("click", e => {
         if (e.target.matches("[data-link]")) {
@@ -12,21 +41,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    router();
     
     requireAuth();
 
+    const currentTimeElement = document.getElementById('current-time');
     const filterButton = document.getElementById('filter-button');
     const periodoStartSelect = document.getElementById('periodo-start');
     const periodoEndSelect = document.getElementById('periodo-end');
     const funcionarioInput = document.getElementById('funcionario');
     const reportTableBody = document.querySelector('#history-table tbody');
+    const baseUrl = 'http://127.0.0.1:5000';
+
+    const debounce = (func, delay) => {
+        let debounceTimer;
+        return function() {
+            const context = this;
+            const args = arguments;
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => func.apply(context, args), delay);
+        };
+    };
 
 
-    async function listReport(funcionario, periodo) {
+    async function fetchReport(funcionario, periodo) {
         try {
-            
+            reportTableBody.innerHTML = '<tr><td colspan="6">Loading...</td></tr>'; // Show loading indicator
 
-            const data = await fetchReport(funcionario, periodo);
+            const response = await fetch(`${baseUrl}/registro?funcionario=${funcionario}&periodo=${periodo}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
             reportTableBody.innerHTML = ''; // Clear the current table body
 
             data.forEach(entry => {
@@ -59,8 +106,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const periodo = periodoStart + ',' + periodoEnd;
-        listReport(funcionario, periodo);
+        fetchReport(funcionario, periodo);
     }, 300));
+
+
+    function updateTime() {
+        const now = new Date();
+        currentTimeElement.textContent = now.toLocaleString();
+    }
+
 
 
 
@@ -68,6 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTime();
 
     const today = new Date().toISOString().split('T')[0];
-    listReport('', today + ',' + today);
+    fetchReport('', today + ',' + today);
 
 });
