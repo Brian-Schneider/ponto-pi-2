@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
             data.forEach(entry => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${entry.date}</td>
-                    <td>${entry.user}</td>
+                    <td>${entry.dia}</td>
+                    <td>${entry.funcionario}</td>
                     <td>${entry.entrada || ''}</td>
                     <td>${entry.intervalo || ''}</td>
                     <td>${entry.retorno || ''}</td>
