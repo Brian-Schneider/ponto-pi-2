@@ -70,7 +70,7 @@ button {
     cursor: pointer;
 }
 
-.history {
+.registros {
     margin-top: 20px;
 }
 
@@ -86,7 +86,7 @@ nav a {
     color: #4CAF50;
 }
 
-#history-table {
+#tabela-registros {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
@@ -95,30 +95,30 @@ nav a {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-#history-table thead tr {
+#tabela-registros thead tr {
     background-color: #009879;
     color: #ffffff;
     text-align: left;
 }
 
-#history-table th,
-#history-table td {
+#tabela-registros th,
+#tabela-registros td {
     padding: 12px 15px;
 }
 
-#history-table tbody tr {
+#tabela-registros tbody tr {
     border-bottom: 1px solid #dddddd;
 }
 
-#history-table tbody tr:nth-of-type(even) {
+#tabela-registros tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
 
-#history-table tbody tr:last-of-type {
+#tabela-registros tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
 
-#history-table tbody tr.active-row {
+#tabela-registros tbody tr.active-row {
     font-weight: bold;
     color: #009879;
 }

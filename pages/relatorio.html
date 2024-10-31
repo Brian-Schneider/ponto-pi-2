@@ -11,30 +11,30 @@
         <div class="logo">Logo da Empresa</div>
         <div class="user-info">
             <span>Nome do Usuário</span>
-            <span id="current-time"></span>
+            <span id="hora-atual"></span>
         </div>
     </header>
     <main>
         <h1>Relatórios por Vários Períodos</h1>
-        <section id="filters">
-            <div id="periodo-filters">
+        <section id="filtros">
+            <div id="periodo-filtros">
                 <label for="periodo">Período:</label>
                 <div>
-                    <label for="periodo-start">De:</label>
-                    <input type="date" id="periodo-start" placeholder="De:">
-                    <label for="periodo-end">Até:</label>
-                    <input type="date" id="periodo-end" placeholder="Até:">
+                    <label for="periodo-inicio">De:</label>
+                    <input type="date" id="periodo-inicio" placeholder="De:">
+                    <label for="periodo-fim">Até:</label>
+                    <input type="date" id="periodo-fim" placeholder="Até:">
                 </div>
             </div>
-            <div id="admin-filters">
+            <div id="admin-filtros">
                 <label for="funcionario">Funcionário:</label>
                 <input type="text" id="funcionario" placeholder="Nome do Funcionário">
             </div>
             <button id="filter-button">Filtrar</button>
         </section>
-        <section class="history">
-            <h2>Histórico de Registros</h2>
-            <table id="history-table">
+        <section class="registros">
+            <h2>Relatório de Pontos</h2>
+            <table id="tabela-registros">
                 <thead>
                     <tr>
                         <th>Data</th>
@@ -46,13 +46,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Rows will be populated by JavaScript -->
+                    <!-- Linhas populadas pelo JavaScript -->
                 </tbody>
             </table>
         </section>
     </main>
     <footer>
-        <!-- Include footer component -->
         <div id="footer"></div>
     </footer>
     <script type="module" src="/scripts/relatorio.js"></script>

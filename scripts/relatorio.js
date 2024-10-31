@@ -7,27 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
     
     requireAuth();
 
-    const filterButton = document.getElementById('filter-button');
-    const periodoStartSelect = document.getElementById('periodo-start');
-    const periodoEndSelect = document.getElementById('periodo-end');
+    const filtrarButton = document.getElementById('filter-button');
+    const inicioPeriodoSelect = document.getElementById('periodo-inicio');
+    const fimPeriodoSelect = document.getElementById('periodo-fim');
     const funcionarioInput = document.getElementById('funcionario');
-    const reportTableBody = document.querySelector('#history-table tbody');
+    const tabelaRelatorio = document.querySelector('#tabela-registros tbody');
 
 
-    filterButton.addEventListener('click', debounce(async () => {
-        const periodoStart = periodoStartSelect.value;
-        const periodoEnd = periodoEndSelect.value;
+    filtrarButton.addEventListener('click', debounce(async () => {
+        const inicioPeriodo = inicioPeriodoSelect.value;
+        const fimPeriodo = fimPeriodoSelect.value;
         const funcionario = funcionarioInput.value.trim();
 
-        if (!periodoStart || !periodoEnd) {
+        if (!inicioPeriodo || !fimPeriodo) {
             alert('Por favor, selecionar as datas.');
             return;
         }
 
-        const periodo = `${periodoStart},${periodoEnd}`;
+        const periodo = `${inicioPeriodo},${fimPeriodo}`;
         try {
             const data = await fetchRelatorio(funcionario, periodo);
-            reportTableBody.innerHTML = ''; // Clear the current table body
+            tabelaRelatorio.innerHTML = ''; // Clear the current table body
 
             data.forEach(entry => {
                 const row = document.createElement('tr');
@@ -39,19 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${entry.retorno || ''}</td>
                     <td>${entry.saida || ''}</td>
                 `;
-                reportTableBody.appendChild(row);
+                tabelaRelatorio.appendChild(row);
             });
         } catch (error) {
-            reportTableBody.innerHTML = '<tr><td colspan="6">Error loading data</td></tr>'; // Show error message
+            tabelaRelatorio.innerHTML = '<tr><td colspan="6">Erro ao carregar Relatório</td></tr>'; // Show error message
         }
     }, 300));
 
     setInterval(updateTime, 1000);
     updateTime();
 
-    const today = new Date().toISOString().split('T')[0];
-    fetchRelatorio('', `${today},${today}`).then(data => {
-        reportTableBody.innerHTML = ''; // Clear the current table body
+    const diaHoje = new Date().toISOString().split('T')[0];
+    fetchRelatorio('', `${diaHoje},${diaHoje}`).then(data => {
+        tabelaRelatorio.innerHTML = ''; // Clear the current table body
 
         data.forEach(entry => {
             const row = document.createElement('tr');
@@ -63,9 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${entry.retorno || ''}</td>
                 <td>${entry.saida || ''}</td>
             `;
-            reportTableBody.appendChild(row);
+            tabelaRelatorio.appendChild(row);
         });
     }).catch(error => {
-        reportTableBody.innerHTML = '<tr><td colspan="6">Error loading data</td></tr>'; // Show error message
+        tabelaRelatorio.innerHTML = '<tr><td colspan="6">Erro ao carregar Relatório</td></tr>'; // Show error message
     });
 });

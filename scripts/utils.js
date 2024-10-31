@@ -1,8 +1,8 @@
 export function updateTime() {
-    const currentTimeElement = document.getElementById('current-time');
+    const horaAtualElement = document.getElementById('hora-atual');
     
     const now = new Date();
-    currentTimeElement.textContent = now.toLocaleString();
+    horaAtualElement.textContent = now.toLocaleString();
 }
 
 export const debounce = (func, delay) => {

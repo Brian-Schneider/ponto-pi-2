@@ -7,15 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     requireAuth();
 
 
-    const currentTimeElement = document.getElementById('current-time');
-    const historyList = document.getElementById('history-list');
-    const baseUrl = 'http://127.0.0.1:5000';
-
-    const saveTimeEndpoint = `${baseUrl}/registro/salvar`;
-    const loadHistoryEndpoint = `${baseUrl}/registro`;
-
-
-    let currentEntry = {
+    let registro = {
         funcionario: localStorage.getItem('id'),
         dia: new Date().toLocaleDateString(),
         entrada: '',
@@ -32,75 +24,54 @@ document.addEventListener('DOMContentLoaded', () => {
         // Send the entry to the backend
         try {
             const body = {
-                funcionario: currentEntry.funcionario,
-                dia: currentEntry.dia,
+                funcionario: registro.funcionario,
+                dia: registro.dia,
                 campo_tempo: campoTempo,
                 valor_tempo: valorTempo
             }
-            const data = await saveRegistro (body);
+            
+            await saveRegistro (body);
     
             // Refresh the table to show the latest data
             const userId = localStorage.getItem('id'); // Adjust this line based on where you store the userId
             if (userId) {
-                await loadHistoryUser(userId);
+                await listaRegistroUsuario(userId);
             } else {
-                console.error('User ID not found');
+                console.error('ID de usuário não encontrado');
             }
         } catch (error) {
             console.error('Error:', error);
         }
     }
 
-    async function loadHistory() {
-        // Retrieve the history from the backend
-        try {
-            const response = await fetch(baseUrl);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            historyList.innerHTML = ''; // Clear the current list
-
-            // Populate the history list with the retrieved data
-            data.forEach(entry => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${entry.type} - ${new Date(entry.timestamp).toLocaleString()}`;
-                historyList.appendChild(listItem);
-            });
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
-
-    async function loadHistoryUser(userId) {
+    async function listaRegistroUsuario(userId) {
         try {
             const response = await fetchHistoryUser(userId);
     
 
-            const historyTableBody = document.querySelector('#history-table tbody');
-            historyTableBody.innerHTML = ''; // Clear the current table body
+            const tabelaRegistros = document.querySelector('#tabela-registros tbody');
+            tabelaRegistros.innerHTML = '';
     
             // Get the current date and the date 5 days prior
-            const currentDate = new Date();
-            const pastDate = new Date();
-            pastDate.setDate(currentDate.getDate() - 6);
+            const dataAtual = new Date();
+            const dataPassada = new Date();
+            dataPassada.setDate(dataAtual.getDate() - 6);
     
             // Filter the data to include only entries within the desired date range
-            const filteredData = response.filter(entry => {
-                const entryDate = new Date(entry.dia);
-                return entryDate >= pastDate && entryDate <= currentDate;
+            const datasFiltradas = response.filter(entry => {
+                const entryDia = new Date(entry.dia);
+                return entryDia >= dataPassada && entryDia <= dataAtual;
             });
     
             // Sort the filtered response in descending order by date
-            filteredData.sort((a, b) => new Date(b.dia) - new Date(a.dia));
+            datasFiltradas.sort((a, b) => new Date(b.dia) - new Date(a.dia));
     
             function formatDate(dia) {
                 return new Intl.DateTimeFormat('pt-BR').format(new Date(dia));
             }
 
             // Populate the table with the sorted data
-            filteredData.forEach(entry => {
+            datasFiltradas.forEach(entry => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${formatDate(entry.dia)}</td>
@@ -109,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${entry.retorno || ''}</td>
                     <td>${entry.saida || ''}</td>
                 `;
-                historyTableBody.appendChild(row);
+                tabelaRegistros.appendChild(row);
             });
         } catch (error) {
             console.error('Error:', error);
@@ -127,8 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const userId = localStorage.getItem('id');
 
     if (userId) {
-        loadHistoryUser(userId);
+        listaRegistroUsuario(userId);
     } else {
-        console.error('User ID not found');
+        console.error('ID de usuário não encontrado');
     }
 });

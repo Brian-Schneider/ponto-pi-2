@@ -47,13 +47,3 @@ export async function fetchHistoryUser(userId) {
     const endpoint = `/registro/${userId}`;
     return await apiRequest(endpoint);
 }
-
-export async function fetchUserData(userId) {
-    const endpoint = `/users/${userId}`;
-    return await apiRequest(endpoint);
-}
-
-export async function updateUser(userId, userData) {
-    const endpoint = `/users/${userId}`;
-    return await apiRequest(endpoint, 'PUT', userData);
-}
