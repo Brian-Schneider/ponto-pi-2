@@ -17,6 +17,10 @@
         "rewrite": "/pages/relatorio.html"
       },
       {
+        "route": "/funcionarios",
+        "rewrite": "/pages/gestao-funcionarios.html"
+      },
+      {
         "route": "/about",
         "rewrite": "/index.html"
       },
