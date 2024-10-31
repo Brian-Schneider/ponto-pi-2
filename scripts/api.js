@@ -39,7 +39,7 @@ export async function login(email, password) {
 
 export async function saveRegistro(body) {
     const endpoint = '/registro/salvar';
-    const registro = body.JSONstringify();
+    const registro = body;
     return await apiRequest(endpoint, 'POST', registro);
 }
 
