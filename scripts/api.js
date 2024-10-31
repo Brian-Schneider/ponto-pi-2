@@ -43,6 +43,11 @@ export async function saveRegistro(body) {
     return await apiRequest(endpoint, 'POST', registro);
 }
 
+export async function fetchHistoryUser(userId) {
+    const endpoint = `/registro/${userId}`;
+    return await apiRequest(endpoint);
+}
+
 export async function fetchUserData(userId) {
     const endpoint = `/users/${userId}`;
     return await apiRequest(endpoint);

@@ -38,13 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 valor_tempo: valorTempo
             }
             const data = await saveRegistro (body);
-            if (data.success) {
-                alert('Registro salvo com sucesso');
-            } else {
-                alert('Erro ao salvar registro');
-            }
-            
-            
     
             // Refresh the table to show the latest data
             const userId = localStorage.getItem('id'); // Adjust this line based on where you store the userId
@@ -82,12 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadHistoryUser(userId) {
         try {
-            const response = await fetch(`${loadHistoryEndpoint}/${userId}`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+            const response = await fetchHistoryUser;
     
-            const data = await response.json();
+            const data = response.json();
             const historyTableBody = document.querySelector('#history-table tbody');
             historyTableBody.innerHTML = ''; // Clear the current table body
     
