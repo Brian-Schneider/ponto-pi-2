@@ -16,8 +16,11 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Position</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Email</th>
+                <th>Cargo</th>
+                <th>Nivel de Acesso</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -30,10 +33,16 @@
     <div id="createForm" style="display:none;">
         <h2>Create New Employee</h2>
         <form id="createEmployeeForm">
-            <label for="name">Name:</label>
+            <label for="name">Nome:</label>
             <input type="text" id="name" name="name" required>
-            <label for="position">Position:</label>
+            <label for="position">Sobrenome:</label>
+            <input type="text" id="sobrenome" name="sobrenome" required>
+            <label for="position">Email:</label>
+            <input type="text" id="email" name="email" required>
+            <label for="position">Cargo:</label>
             <input type="text" id="position" name="position" required>
+            <label for="position">Nivel de Acesso:</label>
+            <input type="text" id="nivelAcesso" name="nivelAcesso" required>
             <button type="submit">Create</button>
             <button type="button" onclick="closeCreateForm()">Cancel</button>
         </form>
@@ -44,10 +53,16 @@
         <h2>Update Employee</h2>
         <form id="updateEmployeeForm">
             <input type="hidden" id="updateId" name="id">
-            <label for="updateName">Name:</label>
+            <label for="updateName">Nome:</label>
             <input type="text" id="updateName" name="name" required>
-            <label for="updatePosition">Position:</label>
+            <label for="updateSobrenome">Sobrenome:</label>
+            <input type="text" id="updateSobrenome" name="sobrenome" required>
+            <label for="updateEmail">Email:</label>
+            <input type="text" id="updateEmail" name="email" required>
+            <label for="updatePosition">Cargo:</label>
             <input type="text" id="updatePosition" name="position" required>
+            <label for="updateNivelAcesso">Nivel de Acesso:</label>
+            <input type="text" id="updateNivelAcesso" name="nivelAcesso" required>
             <button type="submit">Update</button>
             <button type="button" onclick="closeUpdateForm()">Cancel</button>
         </form>
@@ -60,77 +75,7 @@
         <button type="button" onclick="closeDetailsModal()">Close</button>
     </div>
 
-    <script src="/scripts/auth.js"></script>
-    <script src="/scripts/authO.js"></script>
-    <script src="/scripts/scripts.js"></script>
-    <script>
-        document.getElementById('createEmployeeForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    // Logic to create a new employee
-    closeCreateForm();
-});
-
-document.getElementById('updateEmployeeForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    // Logic to update an existing employee
-    closeUpdateForm();
-});
-
-function openCreateForm() {
-    document.getElementById('createForm').style.display = 'block';
-}
-
-function closeCreateForm() {
-    document.getElementById('createForm').style.display = 'none';
-}
-
-function openUpdateForm(id, name, position) {
-    document.getElementById('updateId').value = id;
-    document.getElementById('updateName').value = name;
-    document.getElementById('updatePosition').value = position;
-    document.getElementById('updateForm').style.display = 'block';
-}
-
-function closeUpdateForm() {
-    document.getElementById('updateForm').style.display = 'none';
-}
-
-function openDetailsModal(details) {
-    document.getElementById('employeeDetails').innerText = details;
-    document.getElementById('detailsModal').style.display = 'block';
-}
-
-function closeDetailsModal() {
-    document.getElementById('detailsModal').style.display = 'none';
-}
-
-// Function to populate employee table (example data)
-function populateEmployeeTable() {
-    const employees = [
-        { id: 1, name: 'John Doe', position: 'Manager' },
-        { id: 2, name: 'Jane Smith', position: 'Developer' }
-    ];
-
-    const tableBody = document.getElementById('employeeTable');
-    tableBody.innerHTML = '';
-
-    employees.forEach(employee => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${employee.id}</td>
-            <td>${employee.name}</td>
-            <td>${employee.position}</td>
-            <td>
-                <button onclick="openUpdateForm(${employee.id}, '${employee.name}', '${employee.position}')">Update</button>
-                <button onclick="openDetailsModal('ID: ${employee.id}\\nName: ${employee.name}\\nPosition: ${employee.position}')">Details</button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-// Populate the table on page load
-window.onload = populateEmployeeTable;
-    </script>
+    <script type='module' src="/scripts/gestao-funcionarios.js"></script>
+   
 </body>
 </html>
