@@ -1,6 +1,6 @@
 import { requireAuth } from './auth.js';
-import { debounce, updateTime } from './utils.js';
-import { fetchRelatorio, saveRegistro } from './api.js';
+import { updateTime } from './utils.js';
+import { saveRegistro } from './api.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -24,10 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         saida: ''
     };
 
-    function updateTime() {
-        const now = new Date();
-        currentTimeElement.textContent = now.toLocaleString();
-    }
 
     async function addHistoryEntry(campoTempo) {
         const now = new Date();
