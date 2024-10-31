@@ -1,6 +1,6 @@
 import { requireAuth } from './auth.js';
 import { debounce, updateTime } from './utils.js';
-import { fetchReport } from './api.js';
+import { fetchRelatorio } from './api.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const periodo = `${periodoStart},${periodoEnd}`;
         try {
-            const data = await fetchReport(funcionario, periodo);
+            const data = await fetchRelatorio(funcionario, periodo);
             reportTableBody.innerHTML = ''; // Clear the current table body
 
             data.forEach(entry => {
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTime();
 
     const today = new Date().toISOString().split('T')[0];
-    fetchReport('', `${today},${today}`).then(data => {
+    fetchRelatorio('', `${today},${today}`).then(data => {
         reportTableBody.innerHTML = ''; // Clear the current table body
 
         data.forEach(entry => {

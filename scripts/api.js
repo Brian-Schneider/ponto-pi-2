@@ -26,7 +26,7 @@ async function apiRequest(endpoint, method = 'GET', body = null, headers = {}) {
     }
 }
 
-export async function fetchReport(funcionario, periodo) {
+export async function fetchRelatorio(funcionario, periodo) {
     const endpoint = `/registro/?funcionario=${funcionario}&periodo=${periodo}`;
     return await apiRequest(endpoint);
 }
