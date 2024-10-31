@@ -75,9 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadHistoryUser(userId) {
         try {
-            const response = await fetchHistoryUser;
+            const response = await fetchHistoryUser(userId);
     
-            const data = response.json();
+            const data = await response.json();
             const historyTableBody = document.querySelector('#history-table tbody');
             historyTableBody.innerHTML = ''; // Clear the current table body
     
