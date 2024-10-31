@@ -1,49 +1,11 @@
+import { requireAuth } from './auth.js';
+import { debounce, updateTime } from './utils.js';
+import { fetchRelatorio, saveRegistro } from './api.js';
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    const navigateTo = url => {
-        history.pushState(null, null, url);
-        router();
-    };
-
-    const router = async () => {
-        const routes = [
-            { path: "/", view: () => "Welcome to the Home Page" },
-            { path: "/pages/about.html", view: () => "Learn more About Us" },
-            { path: "/pages/contact.html", view: () => "Contact Us Here" },
-            { path: "/pages/login.html", view: () => "Login to Your Account" }
-        ];
-
-        const potentialMatches = routes.map(route => {
-            return {
-                route: route,
-                isMatch: location.pathname === route.path
-            };
-        });
-
-        let match = potentialMatches.find(potentialMatch => potentialMatch.isMatch);
-
-        if (!match) {
-            match = {
-                route: routes[0],
-                isMatch: true
-            };
-        }
-
-        document.querySelector("#app").innerHTML = await match.route.view();
-    };
-
-    window.addEventListener("popstate", router);
-
-    document.body.addEventListener("click", e => {
-        if (e.target.matches("[data-link]")) {
-            e.preventDefault();
-            navigateTo(e.target.href);
-        }
-    });
-
-    router();
-    
     requireAuth();
+
 
     const currentTimeElement = document.getElementById('current-time');
     const historyList = document.getElementById('history-list');
@@ -73,22 +35,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
         // Send the entry to the backend
         try {
-            const response = await fetch(saveTimeEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    funcionario: currentEntry.funcionario,
-                    dia: currentEntry.dia,
-                    campo_tempo: campoTempo,
-                    valor_tempo: valorTempo
-                })
-            });
-    
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+            body = {
+                funcionario: currentEntry.funcionario,
+                dia: currentEntry.dia,
+                campo_tempo: campoTempo,
+                valor_tempo: valorTempo
             }
+            const data = await saveRegistro (body);
+            if (data.success) {
+                alert('Registro salvo com sucesso');
+            } else {
+                alert('Erro ao salvar registro');
+            }
+            
+            
     
             // Refresh the table to show the latest data
             const userId = localStorage.getItem('id'); // Adjust this line based on where you store the userId

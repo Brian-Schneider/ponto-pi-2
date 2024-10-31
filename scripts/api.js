@@ -37,6 +37,12 @@ export async function login(email, password) {
     return await apiRequest(endpoint, 'POST', body);
 }
 
+export async function saveRegistro(body) {
+    const endpoint = '/registro/salvar';
+    const body = body.JSONstringify();
+    return await apiRequest(endpoint, 'POST');
+}
+
 export async function fetchUserData(userId) {
     const endpoint = `/users/${userId}`;
     return await apiRequest(endpoint);
