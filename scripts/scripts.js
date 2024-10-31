@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         // Send the entry to the backend
         try {
-            body = {
+            const body = {
                 funcionario: currentEntry.funcionario,
                 dia: currentEntry.dia,
                 campo_tempo: campoTempo,
