@@ -76,10 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadHistoryUser(userId) {
         try {
             const response = await fetchHistoryUser(userId);
-
-            console.log(response);
     
-            const data = await response.json();
+
             const historyTableBody = document.querySelector('#history-table tbody');
             historyTableBody.innerHTML = ''; // Clear the current table body
     
@@ -89,12 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
             pastDate.setDate(currentDate.getDate() - 6);
     
             // Filter the data to include only entries within the desired date range
-            const filteredData = data.filter(entry => {
+            const filteredData = response.filter(entry => {
                 const entryDate = new Date(entry.dia);
                 return entryDate >= pastDate && entryDate <= currentDate;
             });
     
-            // Sort the filtered data in descending order by date
+            // Sort the filtered response in descending order by date
             filteredData.sort((a, b) => new Date(b.dia) - new Date(a.dia));
     
             function formatDate(dia) {
