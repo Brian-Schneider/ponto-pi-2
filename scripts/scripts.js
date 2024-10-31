@@ -1,6 +1,6 @@
 import { requireAuth } from './auth.js';
 import { updateTime } from './utils.js';
-import { saveRegistro } from './api.js';
+import { saveRegistro, fetchHistoryUser } from './api.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
