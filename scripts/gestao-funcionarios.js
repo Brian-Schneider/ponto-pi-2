@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.abrirModalDetalhes = abrirModalDetalhes;
     window.fecharModalDetalhes = fecharModalDetalhes;
 
-    setInterval(atualizarTime, 1000);
+    setInterval(updateTime, 1000);
     updateTime();
 
     popularTabelaFuncionarios();
