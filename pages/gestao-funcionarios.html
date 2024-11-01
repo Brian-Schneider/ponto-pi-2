@@ -42,14 +42,16 @@
         <form id="createEmployeeForm">
             <label for="name">Nome:</label>
             <input type="text" id="name" name="name" required>
-            <label for="position">Sobrenome:</label>
+            <label for="sobrenomeo">Sobrenome:</label>
             <input type="text" id="sobrenome" name="sobrenome" required>
-            <label for="position">Email:</label>
+            <label for="email">Email:</label>
             <input type="text" id="email" name="email" required>
             <label for="position">Cargo:</label>
             <input type="text" id="position" name="position" required>
-            <label for="position">Nivel de Acesso:</label>
+            <label for="nivelAcesso">Nivel de Acesso:</label>
             <input type="text" id="nivelAcesso" name="nivelAcesso" required>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
             <button type="submit">Create</button>
             <button type="button" onclick="closeCreateForm()">Cancel</button>
         </form>
@@ -70,6 +72,8 @@
             <input type="text" id="updatePosition" name="position" required>
             <label for="updateNivelAcesso">Nivel de Acesso:</label>
             <input type="text" id="updateNivelAcesso" name="nivelAcesso" required>
+            <label for="updateSenha">Senha:</label>
+            <input type="password" id="updateSenha" name="senha" required>
             <button type="submit">Update</button>
             <button type="button" onclick="closeUpdateForm()">Cancel</button>
         </form>
