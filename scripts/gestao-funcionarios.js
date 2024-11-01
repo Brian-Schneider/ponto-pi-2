@@ -73,10 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('createForm').style.display = 'none';
     }
 
-    function openUpdateForm(id, name, position) {
+    function openUpdateForm(id, name, sobrenome, email, position, role, password) {
         document.getElementById('updateId').value = id;
-        document.getElementById('updateName').value = name;
-        document.getElementById('updatePosition').value = position;
+        document.getElementById('updateNome').value = name;
+        document.getElementById('updateSobrenome').value = sobrenome;
+        document.getElementById('updateEmail').value = email;
+        document.getElementById('updateCargo').value = position;
+        document.getElementById('updateNivelAcesso').value = role;
+        document.getElementById('updateSenha').value = password;
         document.getElementById('updateForm').style.display = 'block';
     }
 
