@@ -1,55 +1,55 @@
 import { requireAuth } from './auth.js';
-import { updateTime } from './utils.js';
-import { fetchEmployees, createEmployee, updateEmployee } from './api.js';
+import { atualizarTime } from './utils.js';
+import { fetchFuncionarios, criarFuncionario, atualizarFuncionario } from './api.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     requireAuth();
 
-    const createEmployeeForm = document.getElementById('createEmployeeForm');
-    const updateEmployeeForm = document.getElementById('updateEmployeeForm');
-    const employeeTable = document.getElementById('employeeTable');
+    const formCriarFuncionario = document.getElementById('formCriarFuncionario');
+    const formAtualizarFuncionario = document.getElementById('atualizarFuncionarioForm');
+    const tabelaFuncionarios = document.getElementById('tabelaFuncionarios');
 
-    createEmployeeForm.addEventListener('submit', async (event) => {
+    formCriarFuncionario.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const name = document.getElementById('name').value;
+        const nome = document.getElementById('nome').value;
         const sobrenome = document.getElementById('sobrenome').value;
         const email = document.getElementById('email').value;
-        const cargo = document.getElementById('position').value;
+        const cargo = document.getElementById('cargo').value;
         const role = document.getElementById('nivelAcesso').value;
         const password = document.getElementById('senha').value;
 
         try {
             const body = {
-                nome: name,
+                nome: nome,
                 sobrenome: sobrenome,
                 email: email,
                 cargo: cargo,
                 role: role,
                 password: password
             }
-            await createEmployee(body);
-            closeCreateForm();
-            populateEmployeeTable();
+            await criarFuncionario(body);
+            fecharFormCriar();
+            popularTabelaFuncionarios();
         } catch (error) {
             alert('Erro ao criar funcionário');
         }
     });
 
-    updateEmployeeForm.addEventListener('submit', async (event) => {
+    formAtualizarFuncionario.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const id = document.getElementById('updateId').value;
-        const name = document.getElementById('updateName').value;
-        const sobrenome = document.getElementById('updateSobrenome').value;
-        const email = document.getElementById('updateEmail').value;
-        const cargo = document.getElementById('updatePosition').value;
-        const role = document.getElementById('updateNivelAcesso').value;
-        const password = document.getElementById('updateSenha').value;
+        const id = document.getElementById('atualizarId').value;
+        const nome = document.getElementById('atualizarNome').value;
+        const sobrenome = document.getElementById('atualizarSobrenome').value;
+        const email = document.getElementById('atualizarEmail').value;
+        const cargo = document.getElementById('atualizarCargo').value;
+        const role = document.getElementById('atualizarNivelAcesso').value;
+        const password = document.getElementById('atualizarSenha').value;
 
         try {
 
             const body = {
                 id: id,
-                nome: name,
+                nome: nome,
                 sobrenome: sobrenome,
                 email: email,
                 cargo: cargo,
@@ -57,80 +57,79 @@ document.addEventListener('DOMContentLoaded', () => {
                 password: password
             }
 
-            await updateEmployee(body);
-            closeUpdateForm();
-            populateEmployeeTable();
+            await atualizarFuncionario(body);
+            fecharFormAtualizar();
+            popularTabelaFuncionarios();
         } catch (error) {
             alert('Erro ao atualizar funcionário');
         }
     });
 
-    function openCreateForm() {
-        document.getElementById('createForm').style.display = 'block';
+    function abrirFormCriar() {
+        document.getElementById('formCriar').style.display = 'block';
     }
 
-    function closeCreateForm() {
-        document.getElementById('createForm').style.display = 'none';
+    function fecharFormCriar() {
+        document.getElementById('formCriar').style.display = 'none';
     }
 
-    function openUpdateForm(id, nome, sobrenome, email, cargo, role) {
-        document.getElementById('updateId').value = id;
-        document.getElementById('updateName').value = nome;
-        document.getElementById('updateSobrenome').value = sobrenome;
-        document.getElementById('updateEmail').value = email;
-        document.getElementById('updatePosition').value = cargo;
-        document.getElementById('updateNivelAcesso').value = role;
-        document.getElementById('updateForm').style.display = 'block';
+    function abrirFormAtualizar(id, nome, sobrenome, email, cargo, role) {
+        document.getElementById('atualizarId').value = id;
+        document.getElementById('atualizarNome').value = nome;
+        document.getElementById('atualizarSobrenome').value = sobrenome;
+        document.getElementById('atualizarEmail').value = email;
+        document.getElementById('atualizarCargo').value = cargo;
+        document.getElementById('atualizarNivelAcesso').value = role;
+        document.getElementById('formAtualizar').style.display = 'block';
     }
 
-    function closeUpdateForm() {
-        document.getElementById('updateForm').style.display = 'none';
+    function fecharFormAtualizar() {
+        document.getElementById('formAtualizar').style.display = 'none';
     }
 
-    function openDetailsModal(details) {
-        document.getElementById('employeeDetails').innerText = details;
-        document.getElementById('detailsModal').style.display = 'block';
+    function abrirModalDetalhes(detalhes) {
+        document.getElementById('detalhesFuncionario').innerText = detalhes;
+        document.getElementById('modalDetalhes').style.display = 'block';
     }
 
-    function closeDetailsModal() {
-        document.getElementById('detailsModal').style.display = 'none';
+    function fecharModalDetalhes() {
+        document.getElementById('modalDetalhes').style.display = 'none';
     }
 
-    async function populateEmployeeTable() {
+    async function popularTabelaFuncionarios() {
         try {
-            const employees = await fetchEmployees();
-            employeeTable.innerHTML = '';
+            const funcionarios = await fetchFuncionarios();
+            tabelaFuncionarios.innerHTML = '';
 
-            employees.forEach(employee => {
-                const row = document.createElement('tr');
+            funcionarios.forEach(funcionario => {
+                const row = document.criarElement('tr');
                 row.innerHTML = `
-                    <td>${employee.id}</td>
-                    <td>${employee.nome}</td>
-                    <td>${employee.sobrenome}</td>
-                    <td>${employee.email}</td>
-                    <td>${employee.cargo}</td>
-                    <td>${employee.role_id}</td>
+                    <td>${funcionario.id}</td>
+                    <td>${funcionario.nome} ${funcionario.sobrenome}</td>
+                    <td>${funcionario.email}</td>
+                    <td>${funcionario.cargo}</td>
+                    <td>${funcionario.role_id}</td>
                     <td>
-                        <button onclick="openUpdateForm(${employee.id}, '${employee.nome}', '${employee.sobrenome}', '${employee.email}', '${employee.cargo}', '${employee.role_id}')">Update</button>
-                        <button onclick="openDetailsModal('ID: ${employee.id}\\nNome: ${employee.nome} ${employee.sobrenome}\\nEmail: ${employee.email}\\nCargo: ${employee.cargo}')">Details</button>
+                        <button onclick="abrirFormAtualizar(${funcionario.id}, '${funcionario.nome}', '${funcionario.sobrenome}', '${funcionario.email}', '${funcionario.cargo}', '${funcionario.role_id}')">Atualizar</button>
+                        <button onclick="abrirModalDetalhes('ID: ${funcionario.id}\\nNome: ${funcionario.nome} ${funcionario.sobrenome}\\nEmail: ${funcionario.email}\\nCargo: ${funcionario.cargo}')">Detalhes</button>
                     </td>
                 `;
-                employeeTable.appendChild(row);
+                tabelaFuncionarios.appendChild(row);
             });
         } catch (error) {
-            employeeTable.innerHTML = '<tr><td colspan="4">Erro ao carregar funcionários</td></tr>';
+            tabelaFuncionarios.innerHTML = '<tr><td colspan="4">Erro ao carregar funcionários</td></tr>';
         }
     }
 
-    window.openCreateForm = openCreateForm;
-    window.closeCreateForm = closeCreateForm;
-    window.openUpdateForm = openUpdateForm;
-    window.closeUpdateForm = closeUpdateForm;
-    window.openDetailsModal = openDetailsModal;
-    window.closeDetailsModal = closeDetailsModal;
+    window.abrirFormCriar = abrirFormCriar;
+    window.fecharFormCriar = fecharFormCriar;
+    window.abrirFormAtualizar = abrirFormAtualizar;
+    window.fecharFormAtualizar = fecharFormAtualizar;
+    window.abrirModalDetalhes = abrirModalDetalhes;
+    window.fecharModalDetalhes = fecharModalDetalhes;
 
-    setInterval(updateTime, 1000);
-    updateTime();
+    setInterval(atualizarTime, 1000);
+    atualizarTime();
 
-    populateEmployeeTable();
+    popularTabelaFuncionarios();
 });

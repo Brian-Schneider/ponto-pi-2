@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Employee Management</title>
+    <title>Gestão de Funcionários</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -17,73 +17,72 @@
             <span id="hora-atual"></span>
         </div>
     </header>
-    <h1>Employee Management</h1>
-    <button onclick="openCreateForm()">Create New Employee</button>
+    <h1>Gestão de Funcionários</h1>
+    <button onclick="abrirformCriar()">Criar novo funcionário</button>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Sobrenome</th>
                 <th>Email</th>
                 <th>Cargo</th>
                 <th>Nivel de Acesso</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody id="employeeTable">
-            <!-- Employee rows will be populated here -->
+        <tbody id="tabelaFuncionarios">
+            <!-- Linhas populadas pelo JavaScript -->
         </tbody>
     </table>
 
-    <!-- Create Employee Form -->
-    <div id="createForm" style="display:none;">
-        <h2>Create New Employee</h2>
-        <form id="createEmployeeForm">
-            <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" required>
+    <!-- Form Criar Funcionario -->
+    <div id="formCriar" style="display:none;">
+        <h2>Criar Novo Funcionário</h2>
+        <form id="formCriarFuncionario">
+            <label for="nnome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
             <label for="sobrenomeo">Sobrenome:</label>
             <input type="text" id="sobrenome" name="sobrenome" required>
             <label for="email">Email:</label>
             <input type="text" id="email" name="email" required>
-            <label for="position">Cargo:</label>
-            <input type="text" id="position" name="position" required>
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" name="cargo" required>
             <label for="nivelAcesso">Nivel de Acesso:</label>
             <input type="text" id="nivelAcesso" name="nivelAcesso" required>
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required>
-            <button type="submit">Create</button>
-            <button type="button" onclick="closeCreateForm()">Cancel</button>
+            <button type="submit">Criar</button>
+            <button type="button" onclick="fecharformCriar()">Cancelar</button>
         </form>
     </div>
 
-    <!-- Update Employee Form -->
-    <div id="updateForm" style="display:none;">
-        <h2>Update Employee</h2>
-        <form id="updateEmployeeForm">
-            <input type="hidden" id="updateId" name="id">
-            <label for="updateName">Nome:</label>
-            <input type="text" id="updateName" name="name" required>
-            <label for="updateSobrenome">Sobrenome:</label>
-            <input type="text" id="updateSobrenome" name="sobrenome" required>
-            <label for="updateEmail">Email:</label>
-            <input type="text" id="updateEmail" name="email" required>
-            <label for="updatePosition">Cargo:</label>
-            <input type="text" id="updatePosition" name="position" required>
-            <label for="updateNivelAcesso">Nivel de Acesso:</label>
-            <input type="text" id="updateNivelAcesso" name="nivelAcesso" required>
-            <label for="updateSenha">Senha:</label>
-            <input type="password" id="updateSenha" name="senha" required>
-            <button type="submit">Update</button>
-            <button type="button" onclick="closeUpdateForm()">Cancel</button>
+    <!-- Form Atualizar Funcionario -->
+    <div id="formAtualizar" style="display:none;">
+        <h2>Atualizar Funcionário</h2>
+        <form id="formAtualizarFuncionario">
+            <input type="hidden" id="atualizarId" name="id">
+            <label for="atualizarNome">Nome:</label>
+            <input type="text" id="atualizarNome" name="nome" required>
+            <label for="atualizarSobrenome">Sobrenome:</label>
+            <input type="text" id="atualizarSobrenome" name="sobrenome" required>
+            <label for="atualizarEmail">Email:</label>
+            <input type="text" id="atualizarEmail" name="email" required>
+            <label for="atualizarCargo">Cargo:</label>
+            <input type="text" id="atualizarCargo" name="cargo" required>
+            <label for="atualizarNivelAcesso">Nivel de Acesso:</label>
+            <input type="text" id="atualizarNivelAcesso" name="nivelAcesso" required>
+            <label for="atualizarSenha">Senha:</label>
+            <input type="password" id="atualizarSenha" name="senha" required>
+            <button type="submit">Atualizar</button>
+            <button type="button" onclick="fecharformAtualizar()">Cancelar</button>
         </form>
     </div>
 
-    <!-- Employee Details Modal -->
-    <div id="detailsModal" style="display:none;">
+    <!-- Modal Detalhes Funcionario -->
+    <div id="modalDetalhes" style="display:none;">
         <h2>Employee Details</h2>
-        <p id="employeeDetails"></p>
-        <button type="button" onclick="closeDetailsModal()">Close</button>
+        <p id="detalhesFuncionario"></p>
+        <button type="button" onclick="fecharmodalDetalhes()">fechar</button>
     </div>
 
     <script type='module' src="/scripts/gestao-funcionarios.js"></script>
