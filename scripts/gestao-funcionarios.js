@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('updateNome').value = name;
         document.getElementById('updateSobrenome').value = sobrenome;
         document.getElementById('updateEmail').value = email;
-        document.getElementById('updatePosition').value = position;
+        document.getElementById('updatePCargo').value = position;
         document.getElementById('updateNivelAcesso').value = role;
         document.getElementById('updateForm').style.display = 'block';
     }
