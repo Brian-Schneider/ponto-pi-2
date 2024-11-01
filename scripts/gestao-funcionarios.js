@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openUpdateForm(id, name, sobrenome, email, position, role) {
         document.getElementById('updateId').value = id;
-        document.getElementById('updateNome').value = name;
+        document.getElementById('updateName').value = nome;
         document.getElementById('updateSobrenome').value = sobrenome;
         document.getElementById('updateEmail').value = email;
         document.getElementById('updatePCargo').value = position;
