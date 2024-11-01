@@ -48,7 +48,10 @@
             <label for="cargo">Cargo:</label>
             <input type="text" id="cargo" name="cargo" required>
             <label for="nivelAcesso">Nivel de Acesso:</label>
-            <input type="text" id="nivelAcesso" name="nivelAcesso" required>
+            <select id="nivelAcesso" name="nivelAcesso" required>
+                <option value="1">admin</option>
+                <option value="2">usuario</option>
+            </select>
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required>
             <button type="submit">Criar</button>
@@ -70,7 +73,10 @@
             <label for="atualizarCargo">Cargo:</label>
             <input type="text" id="atualizarCargo" name="cargo" required>
             <label for="atualizarNivelAcesso">Nivel de Acesso:</label>
-            <input type="text" id="atualizarNivelAcesso" name="nivelAcesso" required>
+            <select id="atualozarNivelAcesso" name="atualizarNivelAcesso" required>
+                <option value="1">admin</option>
+                <option value="2">usuario</option>
+            </select>
             <label for="atualizarSenha">Senha:</label>
             <input type="password" id="atualizarSenha" name="senha" required>
             <button type="submit">Atualizar</button>

@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${funcionario.nome} ${funcionario.sobrenome}</td>
                     <td>${funcionario.email}</td>
                     <td>${funcionario.cargo}</td>
-                    <td>${funcionario.role_id}</td>
+                    <td>${funcionario.role_id === 1 ? 'admin' : 'usuario'}</td>
                     <td>
                         <button onclick="abrirFormAtualizar(${funcionario.id}, '${funcionario.nome}', '${funcionario.sobrenome}', '${funcionario.email}', '${funcionario.cargo}', '${funcionario.role_id}')">Atualizar</button>
                         <button onclick="abrirModalDetalhes('ID: ${funcionario.id}\\nNome: ${funcionario.nome} ${funcionario.sobrenome}\\nEmail: ${funcionario.email}\\nCargo: ${funcionario.cargo}')">Detalhes</button>
