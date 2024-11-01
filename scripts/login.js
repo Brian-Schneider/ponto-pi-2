@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('id', data.id);
                 localStorage.setItem('accessToken', data.accessToken);
                 localStorage.setItem('role', data.role);
+                localStorage.setItem('nome', data.nome);
                 window.location.href = '/';
             } else {
                 alert('Email e/ou senha inválidos');
