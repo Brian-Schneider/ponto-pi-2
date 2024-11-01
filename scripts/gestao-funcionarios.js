@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     requireAuth();
 
     const formCriarFuncionario = document.getElementById('formCriarFuncionario');
-    const formAtualizarFuncionario = document.getElementById('atualizarFuncionarioForm');
+    const formAtualizarFuncionario = document.getElementById('formAtualizarFuncionarioForm');
     const tabelaFuncionarios = document.getElementById('tabelaFuncionarios');
 
     formCriarFuncionario.addEventListener('submit', async (event) => {
