@@ -1,10 +1,12 @@
 import { requireAuth } from './auth.js';
-import { updateTime } from './utils.js';
+import { updateTime, nomeFuncionarioLogado } from './utils.js';
 import { saveRegistro, fetchHistoryUser } from './api.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
     requireAuth();
+
+    nomeFuncionarioLogado();
 
 
     let registro = {

@@ -14,3 +14,10 @@ export const debounce = (func, delay) => {
         debounceTimer = setTimeout(() => func.apply(context, args), delay);
     };
 };
+
+export function nomeFuncionarioLogado(){
+    const nomeFuncionario = localStorage.getItem('nome');
+    if(nomeFuncionario) {
+        document.getElementById('nome-funcionario').innerText = `Olá, ${nomeFuncionario}`;
+    }
+}

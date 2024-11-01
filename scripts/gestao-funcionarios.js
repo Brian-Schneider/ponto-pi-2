@@ -1,12 +1,12 @@
 import { requireAuth } from './auth.js';
-import { updateTime } from './utils.js';
+import { updateTime, nomeFuncionarioLogado } from './utils.js';
 import { fetchFuncionarios, criarFuncionario, atualizarFuncionario } from './api.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     requireAuth();
 
-    document.getElementById("nome-funcionario").innerText = localStorage.getItem('nome');
-
+    nomeFuncionarioLogado();
+    
     const formCriarFuncionario = document.getElementById('formCriarFuncionario');
     const formAtualizarFuncionario = document.getElementById('formAtualizarFuncionario');
     const tabelaFuncionarios = document.getElementById('tabelaFuncionarios');

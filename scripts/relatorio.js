@@ -1,11 +1,12 @@
 import { requireAuth } from './auth.js';
-import { debounce, updateTime } from './utils.js';
+import { debounce, updateTime, nomeFuncionarioLogado  } from './utils.js';
 import { fetchRelatorio } from './api.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    
     requireAuth();
+
+    nomeFuncionarioLogado();
 
     const filtrarButton = document.getElementById('filter-button');
     const inicioPeriodoSelect = document.getElementById('periodo-inicio');
