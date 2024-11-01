@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         try {
             const data = await login(email, password);
+            console.log(data);
             if (data.success) {
                 localStorage.setItem('id', data.id);
                 localStorage.setItem('accessToken', data.accessToken);
