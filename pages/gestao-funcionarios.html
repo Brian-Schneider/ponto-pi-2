@@ -18,7 +18,7 @@
         </div>
     </header>
     <h1>Gestão de Funcionários</h1>
-    <button onclick="abrirformCriar()">Criar novo funcionário</button>
+    <button onclick="abrirFormCriar()">Criar novo funcionário</button>
     <table>
         <thead>
             <tr>
@@ -52,7 +52,7 @@
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required>
             <button type="submit">Criar</button>
-            <button type="button" onclick="fecharformCriar()">Cancelar</button>
+            <button type="button" onclick="fecharFormCriar()">Cancelar</button>
         </form>
     </div>
 
@@ -74,7 +74,7 @@
             <label for="atualizarSenha">Senha:</label>
             <input type="password" id="atualizarSenha" name="senha" required>
             <button type="submit">Atualizar</button>
-            <button type="button" onclick="fecharformAtualizar()">Cancelar</button>
+            <button type="button" onclick="fecharFormAtualizar()">Cancelar</button>
         </form>
     </div>
 
@@ -82,7 +82,7 @@
     <div id="modalDetalhes" style="display:none;">
         <h2>Employee Details</h2>
         <p id="detalhesFuncionario"></p>
-        <button type="button" onclick="fecharmodalDetalhes()">fechar</button>
+        <button type="button" onclick="fecharModalDetalhes()">fechar</button>
     </div>
 
     <script type='module' src="/scripts/gestao-funcionarios.js"></script>
