@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${employee.cargo}</td>
                     <td>${employee.role_id}</td>
                     <td>
-                        <button onclick="openUpdateForm(${employee.id}, '${employee.name}', '${employee.position}')">Update</button>
-                        <button onclick="openDetailsModal('ID: ${employee.id}\\nName: ${employee.name}\\nPosition: ${employee.position}')">Details</button>
+                        <button onclick="openUpdateForm(${employee.id}, '${employee.nome}', '${employee.sobrenome}', '${employee.email}', '${employee.cargo}', '${employee.role_id}', ')">Update</button>
+                        <button onclick="openDetailsModal('ID: ${employee.id}\\nNome: ${employee.nome} ${employee.sobrenome}\\nEmail: ${employee.email}\\nCargo: ${employee.cargo}')">Details</button>
                     </td>
                 `;
                 employeeTable.appendChild(row);
