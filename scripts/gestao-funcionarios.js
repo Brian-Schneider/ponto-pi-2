@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const body = {
-                name: name,
+                nome: name,
                 sobrenome: sobrenome,
                 email: email,
                 cargo: cargo,
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const body = {
                 id: id,
-                name: name,
+                nome: name,
                 sobrenome: sobrenome,
                 email: email,
                 cargo: cargo,
