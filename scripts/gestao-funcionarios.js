@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value;
         const cargo = document.getElementById('position').value;
         const role = document.getElementById('nivelAcesso').value;
+        const password = document.getElementById('senha').value;
 
         try {
             const body = {
@@ -23,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 sobrenome: sobrenome,
                 email: email,
                 cargo: cargo,
-                role: role
+                role: role,
+                password: password
             }
             await createEmployee(body);
             closeCreateForm();
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('updateEmail').value;
         const cargo = document.getElementById('updatePosition').value;
         const role = document.getElementById('updateNivelAcesso').value;
+        const password = document.getElementById('updateSenha').value;
 
         try {
 
@@ -50,7 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 sobrenome: sobrenome,
                 email: email,
                 cargo: cargo,
-                role: role
+                role: role,
+                password: password
             }
 
             await updateEmployee(body);
