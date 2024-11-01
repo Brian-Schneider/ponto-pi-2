@@ -36,11 +36,11 @@ button {
     z-index: 1000;
 }
 
-#detailsModal {
+#modalDetalhes {
     width: 300px;
 }
 
-#detailsModal p {
+#modalDetalhes p {
     white-space: pre-wrap;
 }
 
