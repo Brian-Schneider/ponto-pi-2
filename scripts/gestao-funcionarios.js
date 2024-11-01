@@ -102,11 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tabelaFuncionarios.innerHTML = '';
 
             funcionarios.forEach(funcionario => {
-                const row = document.criarElement('tr');
+                const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${funcionario.id}</td>
-                    <td>${funcionario.nome}</td>
-                    <td>${funcionario.sobrenome}</td>
+                    <td>${funcionario.nome} ${funcionario.sobrenome}</td>
                     <td>${funcionario.email}</td>
                     <td>${funcionario.cargo}</td>
                     <td>${funcionario.role_id}</td>
