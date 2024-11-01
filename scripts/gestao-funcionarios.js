@@ -1,5 +1,5 @@
 import { requireAuth } from './auth.js';
-import { atualizarTime } from './utils.js';
+import { updateTime } from './utils.js';
 import { fetchFuncionarios, criarFuncionario, atualizarFuncionario } from './api.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.fecharModalDetalhes = fecharModalDetalhes;
 
     setInterval(atualizarTime, 1000);
-    atualizarTime();
+    updateTime();
 
     popularTabelaFuncionarios();
 });
