@@ -19,7 +19,7 @@
     </header>
     <h1>Gestão de Funcionários</h1>
     <button onclick="abrirFormCriar()">Criar novo funcionário</button>
-    <table>
+    <table id="tabela-registros">
         <thead>
             <tr>
                 <th>ID</th>
@@ -80,7 +80,7 @@
 
     <!-- Modal Detalhes Funcionario -->
     <div id="modalDetalhes" style="display:none;">
-        <h2>Employee Details</h2>
+        <h2>Detalhes de Funcionário</h2>
         <p id="detalhesFuncionario"></p>
         <button type="button" onclick="fecharModalDetalhes()">fechar</button>
     </div>
