@@ -105,7 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const row = document.criarElement('tr');
                 row.innerHTML = `
                     <td>${funcionario.id}</td>
-                    <td>${funcionario.nome} ${funcionario.sobrenome}</td>
+                    <td>${funcionario.nome}</td>
+                    <td>${funcionario.sobrenome}</td>
                     <td>${funcionario.email}</td>
                     <td>${funcionario.cargo}</td>
                     <td>${funcionario.role_id}</td>
