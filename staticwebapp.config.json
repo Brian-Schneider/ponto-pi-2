@@ -5,12 +5,12 @@
         "rewrite": "/index.html"
       },
       {
-        "route": "/login",
-        "rewrite": "/pages/login.html"
+        "route": "/registro",
+        "rewrite": "/index.html"
       },
       {
-        "route": "/registro",
-        "rewrite": "/pages/registros.html"
+        "route": "/login",
+        "rewrite": "/pages/login.html"
       },
       {
         "route": "/relatorio",
@@ -22,10 +22,6 @@
       },
       {
         "route": "/about",
-        "rewrite": "/index.html"
-      },
-      {
-        "route": "/contact",
         "rewrite": "/index.html"
       }
     ]

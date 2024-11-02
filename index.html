@@ -1,22 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Ponto</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <h1>Registro de Ponto</h1>
-    <div id="registroPonto">
-        <form id="pontoForm">
-            <input type="text" id="job" placeholder="Descrição" required>
-            <input type="datetime-local" id="datetime" required>
-            <button type="submit">Marcar ponto</button>
-        </form>
-        <div id="pontosList"></div>
-    </div>
-    <script src="scripts/auth.js"></script>
-    <script src="scripts/scripts.js"></script>
+    <header>
+        <div class="logo">Logo da Empresa</div>
+        <nav>
+            <a href="/funcionarios">Funcionários</a>
+            <a href="/relatorio">Relatório</a>
+        </nav>
+        <div>
+            <button id="logout-button">Logout</button>
+        </div>
+        <div class="user-info">
+            <span id="nome-funcionario">Nome do Usuário</span>
+            <span id="hora-atual"></span>
+        </div>
+    </header>
+    <main>
+        <section class="registrar.buttons">
+            <button id="entrada">Entrada</button>
+            <button id="intervalo">Intervalo</button>
+            <button id="retorno">Retorno</button>
+            <button id="saida">Saída</button>
+        </section>
+        <section class="registros">
+            <h2>Histórico de Registros</h2>
+            <table id="tabela-registros">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Entrada</th>
+                        <th>Intervalo</th>
+                        <th>Retorno</th>
+                        <th>Saída</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Linhas populadas pelo JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <nav>
+            <a href="#">Dashboard</a>
+            <a href="#">Relatórios</a>
+            <a href="#">Suporte</a>
+        </nav>
+        <div class="contact-info">
+            <span>Contato para Suporte</span>
+        </div>
+    </footer>
+    <script type="module" src="/scripts/scripts.js"></script>
 </body>
 </html>

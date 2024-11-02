@@ -1,4 +1,4 @@
-import { requireAuth } from './auth.js';
+import { requireAuth, controleAcesso } from './auth.js';
 import { updateTime, nomeFuncionarioLogado } from './utils.js';
 import { saveRegistro, fetchHistoryUser } from './api.js';
 import { logout } from './logout.js';
@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     requireAuth();
 
     nomeFuncionarioLogado();
+
+    controleAcesso();
 
     const logoutButton = document.getElementById('logout-button');
     logoutButton.addEventListener('click', () => {
