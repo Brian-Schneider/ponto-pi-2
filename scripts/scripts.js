@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nomeFuncionarioLogado();
 
+    const logoutButton = document.getElementById('logout-button');
+    logoutButton.addEventListener('click', () => {
+        logout();
+    });
+
 
     let registro = {
         funcionario: localStorage.getItem('id'),

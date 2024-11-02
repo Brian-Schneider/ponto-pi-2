@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nomeFuncionarioLogado();
 
+    const logoutButton = document.getElementById('logout-button');
+    logoutButton.addEventListener('click', () => {
+        logout();
+    });
+
     const filtrarButton = document.getElementById('filter-button');
     const inicioPeriodoSelect = document.getElementById('periodo-inicio');
     const fimPeriodoSelect = document.getElementById('periodo-fim');
