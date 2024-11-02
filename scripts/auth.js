@@ -22,9 +22,17 @@ export function requireRole(role) {
 export function controleAcesso() {
     const nivelDeAcesso = getUserRole();
 
+    const relatorioLink = document.getElementById('relatorio-link');
+    const funcionariosLink = document.getElementById('funcionarios-link');
+
+    console.log('relatorioLink:', relatorioLink);
+    console.log('funcionariosLink:', funcionariosLink);
+
+
+
     // Exemplo de controle de acesso
     if (nivelDeAcesso === "user") { // Supondo que 2 é o nível necessário para acessar o relatório
-        document.getElementById('funcionarios-link').style.display = 'none';
-        document.getElementById('relatorio-link').style.display = 'none';
+        funcionariosLink.style.display = 'none';
+        relatorioLink.style.display = 'none';
     }
 }
