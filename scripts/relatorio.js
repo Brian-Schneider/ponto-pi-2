@@ -1,4 +1,4 @@
-import { requireAuth } from './auth.js';
+import { requireAuth, requireRole } from './auth.js';
 import { debounce, updateTime, nomeFuncionarioLogado  } from './utils.js';
 import { fetchRelatorio } from './api.js';
 import { logout } from './logout.js';

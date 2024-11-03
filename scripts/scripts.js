@@ -5,11 +5,11 @@ import { logout } from './logout.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    controleAcesso();
+
     requireAuth();
 
     nomeFuncionarioLogado();
-
-    controleAcesso();
 
     const logoutButton = document.getElementById('logout-button');
     logoutButton.addEventListener('click', () => {

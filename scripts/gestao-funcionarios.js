@@ -1,4 +1,4 @@
-import { requireAuthm, requireRole } from './auth.js';
+import { requireAuth, requireRole } from './auth.js';
 import { updateTime, nomeFuncionarioLogado } from './utils.js';
 import { fetchFuncionarios, criarFuncionario, atualizarFuncionario } from './api.js';
 import { logout } from './logout.js';
