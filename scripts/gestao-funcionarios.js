@@ -1,5 +1,5 @@
 import { requireAuth, requireRole } from './auth.js';
-import { updateTime, nomeFuncionarioLogado } from './utils.js';
+import { debounce, updateTime, nomeFuncionarioLogado } from './utils.js';
 import { fetchFuncionarios, criarFuncionario, atualizarFuncionario, fetchFuncionariosByName } from './api.js';
 import { logout } from './logout.js';
 
