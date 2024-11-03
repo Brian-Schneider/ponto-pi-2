@@ -14,10 +14,18 @@ async function apiRequest(endpoint, method = 'GET', body = null, headers = {}) {
         method,
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`,
             ...headers
         }
     };
+
+    if (requireAuth) {
+        const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken || accessToken.split('.').length !== 3) {
+            console.error('Invalid or missing access token');
+            throw new Error('Invalid or missing access token');
+        }
+        options.headers['Authorization'] = `Bearer ${accessToken}`;
+    }
 
     if (body) {
         options.body = JSON.stringify(body);
