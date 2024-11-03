@@ -74,6 +74,6 @@ export async function fetchFuncionarios() {
 }
 
 export async function fetchFuncionariosByName(nome) {
-    const endpoint = `/funcionarios?nome=${nome}`;
+    const endpoint = `/funcionarios/?nome=${nome}`;
     return await apiRequest(endpoint);
 }
