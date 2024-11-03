@@ -1,6 +1,6 @@
 import { requireAuth, requireRole } from './auth.js';
 import { updateTime, nomeFuncionarioLogado } from './utils.js';
-import { fetchFuncionarios, criarFuncionario, atualizarFuncionario } from './api.js';
+import { fetchFuncionarios, criarFuncionario, atualizarFuncionario, fetchFuncionariosByName } from './api.js';
 import { logout } from './logout.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const formCriarFuncionario = document.getElementById('formCriarFuncionario');
     const formAtualizarFuncionario = document.getElementById('formAtualizarFuncionario');
     const tabelaFuncionarios = document.getElementById('tabelaFuncionarios');
+    const filtrarButton = document.getElementById('filter-button');
+    const funcionarioInput = document.getElementById('funcionario');
+
 
     formCriarFuncionario.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -45,6 +48,33 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Erro ao criar funcionário');
         }
     });
+
+    filtrarButton.addEventListener('click', debounce(async () => {
+
+        
+        try {
+            const funcionarios = await fetchFuncionariosByName(funcionario);
+            tabelaRelatorio.innerHTML = ''; // Clear the current table body
+
+            funcionarios.forEach(funcionario => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${funcionario.id}</td>
+                    <td>${funcionario.nome} ${funcionario.sobrenome}</td>
+                    <td>${funcionario.email}</td>
+                    <td>${funcionario.cargo}</td>
+                    <td>${funcionario.role_id === 1 ? 'admin' : 'usuario'}</td>
+                    <td>
+                        <button onclick="abrirFormAtualizar(${funcionario.id}, '${funcionario.nome}', '${funcionario.sobrenome}', '${funcionario.email}', '${funcionario.cargo}', '${funcionario.role_id}')">Atualizar</button>
+                        <button onclick="abrirModalDetalhes('ID: ${funcionario.id}\\nNome: ${funcionario.nome} ${funcionario.sobrenome}\\nEmail: ${funcionario.email}\\nCargo: ${funcionario.cargo}')">Detalhes</button>
+                    </td>
+                `;
+                tabelaRelatorio.appendChild(row);
+            });
+        } catch (error) {
+            tabelaRelatorio.innerHTML = '<tr><td colspan="6">Erro ao carregar Tabela</td></tr>'; // Show error message
+        }
+    }, 300));
 
     formAtualizarFuncionario.addEventListener('submit', async (event) => {
         event.preventDefault();

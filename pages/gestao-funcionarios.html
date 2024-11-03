@@ -25,7 +25,13 @@
         </div>
     </header>
     <h1>Gestão de Funcionários</h1>
+    <div id="admin-filtros">
+        <label for="funcionario">Funcionário:</label>
+        <input type="text" id="funcionario" placeholder="Nome do Funcionário">
+    </div>
+    <button id="filter-button">Filtrar</button>
     <button onclick="abrirFormCriar()">Criar novo funcionário</button>
+
     <table id="tabela-registros">
         <thead>
             <tr>
