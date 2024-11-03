@@ -2,7 +2,14 @@ const baseUrl = 'http://127.0.0.1:5000';
 
 async function apiRequest(endpoint, method = 'GET', body = null, headers = {}) {
     const url = `${baseUrl}${endpoint}`;
+    
     const accessToken = localStorage.getItem('accessToken');
+
+    if (!accessToken || accessToken.split('.').length !== 3) {
+        console.error('Invalid or missing access token');
+        throw new Error('Invalid or missing access token');
+    }
+    
     const options = {
         method,
         headers: {
