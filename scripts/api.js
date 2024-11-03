@@ -1,6 +1,6 @@
 const baseUrl = 'http://127.0.0.1:5000';
 
-async function apiRequest(endpoint, method = 'GET', body = null, headers = {}) {
+async function apiRequest(endpoint, method = 'GET', body = null, headers = {}, requireAuth = true) {
     const url = `${baseUrl}${endpoint}`;
     
     const options = {
@@ -44,7 +44,7 @@ export async function fetchRelatorio(funcionario, periodo) {
 export async function login(email, password) {
     const endpoint = '/login';
     const body = { email, password };
-    return await apiRequest(endpoint, 'POST', body);
+    return await apiRequest(endpoint, 'POST', body, {}, false);
 }
 
 export async function saveRegistro(body) {
