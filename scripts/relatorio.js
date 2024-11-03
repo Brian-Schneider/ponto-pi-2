@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTime();
 
     const diaHoje = new Date().toISOString().split('T')[0];
+    console.log(diaHoje);
+    console.log(new Date());
     fetchRelatorio('', `${diaHoje},${diaHoje}`).then(data => {
         tabelaRelatorio.innerHTML = ''; // Clear the current table body
 
