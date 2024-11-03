@@ -53,8 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         
         try {
+            const funcionario = funcionarioInput.value.trim();
             const funcionarios = await fetchFuncionariosByName(funcionario);
-            tabelaRelatorio.innerHTML = ''; // Clear the current table body
+            tabelaFuncionarios.innerHTML = ''; // Clear the current table body
 
             funcionarios.forEach(funcionario => {
                 const row = document.createElement('tr');
@@ -69,10 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button onclick="abrirModalDetalhes('ID: ${funcionario.id}\\nNome: ${funcionario.nome} ${funcionario.sobrenome}\\nEmail: ${funcionario.email}\\nCargo: ${funcionario.cargo}')">Detalhes</button>
                     </td>
                 `;
-                tabelaRelatorio.appendChild(row);
+                tabelaFuncionarios.appendChild(row);
             });
         } catch (error) {
-            tabelaRelatorio.innerHTML = '<tr><td colspan="6">Erro ao carregar Tabela</td></tr>'; // Show error message
+            tabelaFuncionarios.innerHTML = '<tr><td colspan="6">Erro ao carregar Tabela</td></tr>'; // Show error message
         }
     }, 300));
 
