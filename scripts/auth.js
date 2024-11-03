@@ -12,9 +12,9 @@ export function getUserRole() {
     return localStorage.getItem('role'); 
 }
 
-export function requireRole(role) {
+export function requireRole() {
     const userRole = getUserRole();
-    if (userRole !== role) {
+    if (userRole !== "admin") {
         window.location.href = '/';
     }
 }

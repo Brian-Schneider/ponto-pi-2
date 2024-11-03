@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     requireAuth();
 
+    requireRole();
+
     nomeFuncionarioLogado();
 
     const logoutButton = document.getElementById('logout-button');
